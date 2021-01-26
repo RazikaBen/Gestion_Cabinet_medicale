@@ -1,0 +1,21 @@
+﻿<Window x:Class="Gestion_Cabinet_medicale.Edit_New_ShowWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gestion_Cabinet_medicale"
+        mc:Ignorable="d"
+        Title="Edit_New_ShowWindow" Height="600" Width="1100" ResizeMode="NoResize" WindowStyle="None" Style="{StaticResource mainWindowStyle}" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Button  HorizontalAlignment="Right" Command="{Binding ExitCommand}" WindowChrome.IsHitTestVisibleInChrome="True" Background="Transparent"  Height="15" Width="15" Margin="10,0" BorderBrush="Transparent">
+            <Path Data="{StaticResource Exit}" Stretch="Fill" Height="13" Width="13" Stroke="White" Fill="{StaticResource TurqoiFoncé}"  HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="0" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Opacity="0.7"/>
+        </Button>
+        <Frame Name="showFrame" Grid.Row="1" Margin="0 20"/>
+        <Grid Grid.Row="2" Height="8" Background="{StaticResource TurqoiFoncé}"/>
+    </Grid>
+</Window>

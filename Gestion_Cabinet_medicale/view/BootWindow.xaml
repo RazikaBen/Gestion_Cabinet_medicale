@@ -1,0 +1,170 @@
+﻿<local:CustomMainWindow x:Class="Gestion_Cabinet_medicale.BootWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gestion_Cabinet_medicale"
+        mc:Ignorable="d" WindowStyle="None" 
+         x:Name="boot" Background="White"  AllowsTransparency="True" Width="480" Height="600" IsConnecting="{Binding IsConnecting}" ResizeMode="NoResize" Connected="{Binding Connected}">
+
+
+    <Window.Clip>
+        <CombinedGeometry  GeometryCombineMode="Union" >
+            <CombinedGeometry.Geometry1>
+                <GeometryGroup>
+                    <EllipseGeometry Center="100,80" RadiusX="79" RadiusY="80" />
+                    <EllipseGeometry Center="462,73" RadiusX="15" RadiusY="15" />
+                </GeometryGroup>
+
+            </CombinedGeometry.Geometry1>
+
+            <CombinedGeometry.Geometry2>
+                <RectangleGeometry Rect="5,70 460 500"/>
+            </CombinedGeometry.Geometry2>
+
+        </CombinedGeometry>
+    </Window.Clip>
+    <Window.Resources>
+        <Storyboard x:Key="ConnectingAnimation">
+            <DoubleAnimation Storyboard.TargetName="rotation" Storyboard.TargetProperty="Angle" To="360" RepeatBehavior="Forever" Duration="0:0:2"/>
+        </Storyboard>
+    </Window.Resources>
+    <Grid Background="White" >
+
+        <Grid>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="5" Direction="-100"  ShadowDepth="3" Opacity="0.3" Color="{StaticResource turqoiFoncé}"/>
+            </Grid.Effect>
+
+            <Ellipse Height="150" Width="150" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="25 5">
+
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/Resources/pic/images.jpg" Stretch="Fill"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <!--grid Contains buttons invisible-->
+            <Grid  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="190 80" Height="auto" Width="auto" >
+                <Path Data="{StaticResource ParametterGeometry}" Fill="{StaticResource TurqoiFoncé}" Height="20" Width="20" Stretch="Fill" Margin="5" />
+
+                <Button Opacity="0" x:Name="butt1" HorizontalAlignment="Left" VerticalAlignment="Top"  Style="{StaticResource CercleLoginButton}" Height="32" Width="32"  Background="{StaticResource TurqoiFoncé}">
+                    <Button.RenderTransform>
+                        <TranslateTransform X="0" Y="0" x:Name="first"/>
+                    </Button.RenderTransform>
+                    <Path Data="{StaticResource RefreshGeometry}" Fill="White" Opacity="0.8" Height="12" Width="13" Stretch="Fill"/>
+                </Button>
+                <Button Opacity="0" x:Name="butt2" HorizontalAlignment="Left" VerticalAlignment="Top"  Style="{StaticResource CercleLoginButton}" Height="32" Width="32"  Background="{StaticResource TurqoiFoncé}" >
+                    <Button.RenderTransform>
+                        <TranslateTransform X="0" Y="0" x:Name="middle"/>
+                    </Button.RenderTransform>
+                    <Path Data="{StaticResource UserGeometry}" Fill="White" Opacity="0.8" Height="10"  Stretch="Fill" Width="10" />
+                </Button>
+                <Button Opacity="0" x:Name="butt3" HorizontalAlignment="Left" VerticalAlignment="Top"  Style="{StaticResource CercleLoginButton}" Height="32" Width="32" Background="{StaticResource TurqoiFoncé}">
+                    <Button.RenderTransform>
+                        <TranslateTransform X="0" Y="0" x:Name="last"/>
+                    </Button.RenderTransform>
+                    <Path Data="{StaticResource PlusGeometry}" Fill="White" Opacity="0.8" Height="10" Width="10" Stretch="Fill"/>
+                </Button>
+                <Grid.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="butt1" Duration="0:0:0.5" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimation Storyboard.TargetName="butt2" Duration="0:0:0.5" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimation Storyboard.TargetName="butt3" Duration="0:0:0.5" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimation Storyboard.TargetName="last" Storyboard.TargetProperty="X" To="-90" Duration="0:0:1"/>
+
+                                <DoubleAnimation Storyboard.TargetName="last" Storyboard.TargetProperty="Y" To="80" Duration="0:0:1"/>
+                                <DoubleAnimation Storyboard.TargetName="middle" Storyboard.TargetProperty="X" To="-46" Duration="0:0:1"/>
+                                <DoubleAnimation Storyboard.TargetName="middle" Storyboard.TargetProperty="Y" To="64" Duration="0:0:1"/>
+                                <DoubleAnimation Storyboard.TargetName="first" Storyboard.TargetProperty="X" To="-22" Duration="0:0:1"/>
+                                <DoubleAnimation Storyboard.TargetName="first" Storyboard.TargetProperty="Y" To="30" Duration="0:0:1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="last" Storyboard.TargetProperty="X" To="0" Duration="0:0:1"/>
+
+                                <DoubleAnimation Storyboard.TargetName="last" Storyboard.TargetProperty="Y" To="0" Duration="0:0:1"/>
+                                <DoubleAnimation Storyboard.TargetName="middle" Storyboard.TargetProperty="X" To="0" Duration="0:0:1"/>
+                                <DoubleAnimation Storyboard.TargetName="middle" Storyboard.TargetProperty="Y" To="0" Duration="0:0:1"/>
+                                <DoubleAnimation Storyboard.TargetName="first" Storyboard.TargetProperty="X" To="0" Duration="0:0:1"/>
+                                <DoubleAnimation Storyboard.TargetName="first" Storyboard.TargetProperty="Y" To="0" Duration="0:0:1"/>
+                                <DoubleAnimation Storyboard.TargetName="butt1" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5"/>
+                                <DoubleAnimation Storyboard.TargetName="butt2" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5"/>
+                                <DoubleAnimation Storyboard.TargetName="butt3" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Grid.Triggers>
+            </Grid>
+            <!--Exit Button-->
+            <Button Style="{StaticResource CercleLoginButton}" Height="31" Width="31" Background="{DynamicResource TurqoiFoncé}"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="1.8 57" Command="{Binding Exit}" >
+
+                <Path Data="{DynamicResource Exit}" Fill="White" Height="8" Width="8" Stretch="Fill"/>
+            </Button>
+        </Grid>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Logo" FontSize="18" HorizontalAlignment="Right" Margin="120 2"  Opacity="0.8" FontFamily="{StaticResource comfortaBold}" FontWeight="Bold"/>
+            <TextBlock Text="AppName" FontSize="30" Opacity="0.7"  HorizontalAlignment="Right" Margin="0 2 120 40" TextDecorations="{x:Null}" FontFamily="{StaticResource comfortaBold}" />
+            <TextBox Style="{StaticResource LoginTextBoxStyle}" Margin="10"  local:AttachedProperty.Placeholder="Username" local:AttachedProperty.IconData="{StaticResource user1Geometry}"  Text="{Binding Username}"/>
+            <PasswordBox local:AttachedProperty.Placeholder="••••••••••" PasswordChanged="PasswordBox_PasswordChanged" local:AttachedProperty.IconData="{StaticResource LockGeometry}" local:AttachedProperty.password="{Binding password , Mode=TwoWay}" Style="{DynamicResource PasswordBoxStyle1}" Margin="10"  />
+           
+
+
+
+
+        </StackPanel>
+
+        <Grid VerticalAlignment="Bottom"  Margin="0 30" Height="auto" >
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="5" Direction="-100"  ShadowDepth="3" Opacity="0.3" Color="{StaticResource turqoiFoncé}"/>
+            </Grid.Effect>
+            <Button Margin="65 80" VerticalAlignment="Bottom" HorizontalAlignment="Right" IsEnabled="{Binding IsConnecting , Converter={StaticResource reverseBool}}" Content="Connecter" FontFamily="{DynamicResource comfortaBold}" Foreground="{DynamicResource HoverClairturquoi}" FontSize="14" Command="{Binding Connect}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Height="38" Width="auto" Background="{DynamicResource TurqoiFoncé}">
+                                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0"/>
+                                    </Border>
+
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.5"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Setter Property="FontSize" Value="1"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Opacity" Value="0.5"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="True">
+                                            <Setter Property="FontSize" Value="1"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Path  RenderTransformOrigin="0.5, 0.5"  Data="{StaticResource LoadingGeometry}" Fill="{StaticResource TurqoiClair}" Height="32" Width="32" Stretch="Fill"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="80" Opacity="{Binding IsConnecting , Converter={StaticResource BoolToOpacity}}">
+                <Path.RenderTransform>
+                    <RotateTransform Angle="0" x:Name="rotation"/>
+                </Path.RenderTransform>
+
+            </Path>
+            <Grid Height="8" Width="570" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="{DynamicResource TurqoiFoncé}"  />
+        </Grid>
+
+
+    </Grid>
+
+
+
+
+</local:CustomMainWindow>

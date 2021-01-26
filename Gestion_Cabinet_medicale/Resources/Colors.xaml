@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Gestion_Cabinet_medicale">
+    <Color x:Key="turqoiTresClair" >#8193A5</Color>
+    <SolidColorBrush x:Key="TurqoiTresClair" Color="{DynamicResource turqoiTresClair}"/>
+
+    <Color x:Key="turqoiClair" >#3D5672</Color>
+    <SolidColorBrush x:Key="TurqoiClair" Color="{DynamicResource turqoiClair}"/>
+
+    <Color x:Key="turqoiFoncé" >#30465E</Color>
+    <SolidColorBrush x:Key="TurqoiFoncé" Color="{DynamicResource turqoiFoncé}"/>
+    <SolidColorBrush x:Key="TurqoiFoncéTransparent" Color="{DynamicResource turqoiFoncé}" Opacity="0.4"/>
+    
+    <Color x:Key="hoverClairturquoi">#E7E7F9</Color>
+    <SolidColorBrush x:Key="HoverClairturquoi" Color="{DynamicResource hoverClairturquoi}"/>
+
+    <Color x:Key="roseColor">#D43E76</Color>
+    <SolidColorBrush x:Key="RoseColor" Color="{DynamicResource roseColor}"/>
+    <SolidColorBrush x:Key="RoseTransparent" Color="{DynamicResource roseColor}" Opacity="0.4"/>
+
+    <Color x:Key="green">#49C276</Color>
+    <SolidColorBrush x:Key="Green" Color="{DynamicResource green}"/>
+    <SolidColorBrush x:Key="GreenTransparent" Color="{DynamicResource green}" Opacity="0.4"/>
+
+    
+
+
+
+
+</ResourceDictionary>

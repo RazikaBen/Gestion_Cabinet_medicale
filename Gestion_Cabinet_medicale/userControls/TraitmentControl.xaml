@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Gestion_Cabinet_medicale.TraitmentControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gestion_Cabinet_medicale"
+             mc:Ignorable="d" 
+             Height="auto" d:DesignWidth="700" Name="control">
+    <Grid Background="#C9C9F1">
+        
+        <Grid.ColumnDefinitions>
+            
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="170" />
+
+        </Grid.ColumnDefinitions>
+       
+
+
+        <TextBlock Margin="10"  Text="{Binding CodeTraitment , ElementName=control , FallbackValue=001458}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Foreground="{DynamicResource TurqoiFoncé}"/>
+        <TextBlock Margin="10" FontFamily="{StaticResource comforta}"  Text="{Binding Patient, ElementName=control , FallbackValue=sirin}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap" Foreground="{DynamicResource TurqoiFoncé}"/>
+        <TextBlock Margin="10" Text="{Binding Maladie , ElementName=control , FallbackValue=BenOtmane}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Foreground="{DynamicResource TurqoiFoncé}" TextWrapping="Wrap"/>
+        <TextBlock Margin="10" Text="{Binding Debut , ElementName=control , FallbackValue=12-05-2019}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Foreground="{DynamicResource TurqoiFoncé}" TextWrapping="Wrap"/>
+        <TextBlock Margin="10" Text="{Binding Fin , ElementName=control , FallbackValue=08-12-2020}" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Foreground="{DynamicResource TurqoiFoncé}"  TextWrapping="Wrap"/>
+        <TextBlock Margin="10" Text="{Binding observation , ElementName=control }" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Foreground="{DynamicResource TurqoiFoncé}" TextWrapping="Wrap" Height="auto" MaxHeight="200"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dd07adfeed9f45d09065b823106bf348" Name="Diagram1">
+        <EntityTypeShape EntityType="cliniqueModel.ACHAT" Width="1.5" PointX="13" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.ANTECEDANT" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.AUTORISATION" Width="1.5" PointX="8.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.CAISSE" Width="1.5" PointX="10.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.CAPTURATION_IMAGE" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.CHAMBRE" Width="1.5" PointX="8.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.CLINIQUE" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.CONSOMATION" Width="1.5" PointX="15.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.CONSULTATION" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.DEPARTEMENT" Width="1.5" PointX="1.5" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.DEPENSE_CLINIQUE" Width="1.5" PointX="13" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.EMPLOYE" Width="1.5" PointX="3.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.EQUIPEMENT" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.EXAMan" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.FACTURE" Width="1.5" PointX="18" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.FOURNISSEUR" Width="1.5" PointX="10.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.LIVRAISON" Width="1.5" PointX="16" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.MALADIE" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.MEDECIN" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.MEDICAMENT" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.PAIEMENT" Width="1.5" PointX="0.75" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.PATIENT" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.PRODUIT" Width="1.5" PointX="10.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.RDV" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.RESULTAT_PATIENT" Width="1.5" PointX="7.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.SERVICEE" Width="1.5" PointX="1.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.STOCK" Width="1.5" PointX="13" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.sysdiagram" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.UTILISATEUR" Width="1.5" PointX="6" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.HOSPITALISATION" Width="1.5" PointX="10.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cliniqueModel.PRESCRIRE" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <AssociationConnector Association="cliniqueModel.FK__ACHAT__ID_CAISSE__1A9EF37A" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__ACHAT__ID_FOURNI__0D44F85C" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__ACHAT__ID_LIVRAI__0F2D40CE" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__ACHAT__ID_PRODUI__0E391C95" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__AUTORISAT__ID_CO__662B2B3B" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__AUTORISAT__ID_SE__671F4F74" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__HOSPITALI__ID_AU__681373AD" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__CAISSE__ID_PAIEM__19AACF41" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__DEPENSE_C__ID_CA__1F63A897" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__CAPTURATI__ID_CO__40058253" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__CAPTURATI__ID_EQ__40F9A68C" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__RESULTAT___ID_CA__47A6A41B" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__CHAMBRE__ID_SERV__1F98B2C1" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__HOSPITALI__ID_CH__2FCF1A8A" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__CONSULTAT__ID_CL__3A4CA8FD" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__RESULTAT___ID_CL__489AC854" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__CONSOMATI__ID_ST__251C81ED" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__CONSULTAT__ID_EX__3B40CD36" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__CONSULTAT__ID_ME__395884C4" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__CONSULTAT__ID_PA__3864608B" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__CONSULTAT__ID_PA__7A3223E8" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__PRESCRIRE__ID_CO__4D5F7D71" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__RESULTAT___ID_CO__45BE5BA9" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__SERVICEE__ID_DEP__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__DEPENSE_C__ID_ME__2057CCD0" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__EMPLOYE__ID_SERV__690797E6" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__FACTURE__ID_EMPL__2BC97F7C" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__RDV__ID_EMPLOYE__719CDDE7" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__UTILISATE__ID_EM__73852659" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__EQUIPEMEN__ID_SE__74794A92" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__RESULTAT___ID_EX__46B27FE2" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__FACTURE__ID_FOUR__2AD55B43" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__LIVRAISON__ID_FO__04AFB25B" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__LIVRAISON__ID_PR__10216507" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__MEDECIN__ID_SERV__756D6ECB" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__RDV__ID_MEDECIN__6FB49575" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__UTILISATE__ID_ME__72910220" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__PRESCRIRE__ID_ME__4E53A1AA" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__HOSPITALI__ID_PA__2DE6D218" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__RDV__ID_PATIENT__70A8B9AE" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__STOCK__ID_PRODUI__14E61A24" ManuallyRouted="false" />
+        <AssociationConnector Association="cliniqueModel.FK__HOSPITALI__ID_SE__2EDAF651" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

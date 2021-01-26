@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\PropertyChanged.Fody.3.3.1\build\PropertyChanged.Fody.props" Condition="Exists('..\packages\PropertyChanged.Fody.3.3.1\build\PropertyChanged.Fody.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{04EF26E7-4C85-4BDA-9DF6-A080F906DC13}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Gestion_Cabinet_medicale</RootNamespace>
+    <AssemblyName>Gestion_Cabinet_medicale</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.11.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.11.4\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.1.11\lib\net46\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.1.11\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.3.1.9\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.9\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="PropertyChanged, Version=3.3.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\packages\PropertyChanged.Fody.3.3.1\lib\net40\PropertyChanged.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ACHAT.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ANTECEDANT.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AUTORISATION.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CAISSE.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CAPTURATION_IMAGE.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CHAMBRE.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clinique.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Clinique.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CLINIQUE.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clinique.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Clinique.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Clinique1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONSOMATION.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONSULTATION.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\availablePagesToBackground.cs" />
+    <Compile Include="Converters\BootToOpacityConverter.cs" />
+    <Compile Include="Converters\DarkingBrushConverter.cs" />
+    <Compile Include="Converters\IsTextToBooleanValueConverter.cs" />
+    <Compile Include="Converters\IsTextToOpacity.cs" />
+    <Compile Include="Converters\PatientAvaillablePageToOpacity.cs" />
+    <Compile Include="Converters\ReverseBool.cs" />
+    <Compile Include="Converters\WidthHeightToRectMultiConverter.cs" />
+    <Compile Include="Data\MyDBContext.cs" />
+    <Compile Include="Data\Patient.cs" />
+    <Compile Include="Data\Traitement.cs" />
+    <Compile Include="DEPARTEMENT.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEPENSE_CLINIQUE.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYE.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Engine.cs" />
+    <Compile Include="EQUIPEMENT.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EXAMan.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FACTURE.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FOURNISSEUR.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClasses\AttachedProperty.cs" />
+    <Compile Include="HelperClasses\availablePages.cs" />
+    <Compile Include="HelperClasses\Cart.cs" />
+    <Compile Include="HelperClasses\Command.cs" />
+    <Compile Include="HelperClasses\Interface1.cs" />
+    <Compile Include="Converters\boolToVisibiltyCoverter.cs" />
+    <Compile Include="HelperClasses\MenuItems.cs" />
+    <Compile Include="HOSPITALISATION.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LIVRAISON.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MALADIE.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MEDECIN.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MEDICAMENT.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PAIEMENT.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PATIENT.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRESCRIRE.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRODUIT.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RDV.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RESULTAT_PATIENT.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SERVICEE.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STOCK.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\AppointmentControl.xaml.cs">
+      <DependentUpon>AppointmentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\PatientHeader.xaml.cs">
+      <DependentUpon>PatientHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\PopUpMenu.xaml.cs">
+      <DependentUpon>PopUpMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\TacheControls.xaml.cs">
+      <DependentUpon>TacheControls.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\TraitmentControl.xaml.cs">
+      <DependentUpon>TraitmentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\UserUiControl.xaml.cs">
+      <DependentUpon>UserUiControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UTILISATEUR.cs">
+      <DependentUpon>Clinique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\bootWindowModel.cs" />
+    <Compile Include="ViewModel\ControlsModel\AppointmentControlModel.cs" />
+    <Compile Include="ViewModel\ControlsModel\PatientHeaderModel.cs" />
+    <Compile Include="ViewModel\ControlsModel\PopupMenuModel.cs" />
+    <Compile Include="ViewModel\ControlsModel\PopUpModel.cs" />
+    <Compile Include="ViewModel\ControlsModel\traitementControlModel.cs" />
+    <Compile Include="ViewModel\MainWindowModel.cs" />
+    <Compile Include="ViewModel\PagesModel\AppointmentPageModel.cs" />
+    <Compile Include="ViewModel\PagesModel\homeModel.cs" />
+    <Compile Include="ViewModel\PagesModel\OrdonnaceModel.cs" />
+    <Compile Include="ViewModel\PagesModel\PatinetModel\PatientCartModel.cs" />
+    <Compile Include="ViewModel\PagesModel\PatinetModel\PatientModel.cs" />
+    <Compile Include="ViewModel\PagesModel\PatinetModel\PatientPrincipalModel.cs" />
+    <Compile Include="ViewModel\PagesModel\traitementModel.cs" />
+    <Compile Include="view\BootWindow.xaml.cs">
+      <DependentUpon>BootWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\CustomMainWindow.cs" />
+    <Compile Include="view\Edit_New_ShowWindow.xaml.cs">
+      <DependentUpon>Edit_New_ShowWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\AppointmentPage.xaml.cs">
+      <DependentUpon>AppointmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\FolderPatientPage.xaml.cs">
+      <DependentUpon>FolderPatientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\homePage.xaml.cs">
+      <DependentUpon>homePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\OordonnancePage.xaml.cs">
+      <DependentUpon>OordonnancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\PatientPage\PatientCartPage.xaml.cs">
+      <DependentUpon>PatientCartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\PatientPage\PatientListPage.xaml.cs">
+      <DependentUpon>PatientListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\PatientPage\PrincipalPatientPage.xaml.cs">
+      <DependentUpon>PrincipalPatientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\traitmentPage.xaml.cs">
+      <DependentUpon>traitmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Pages\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Resources\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\dataPath.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\FontFamly.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\AppointmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\PatientHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\PopUpMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\TacheControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\TraitmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\UserUiControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\BootWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Edit_New_ShowWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="view\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="view\Pages\AppointmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\FolderPatientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\homePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\OordonnancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\PatientPage\PatientCartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\PatientPage\PatientListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\PatientPage\PrincipalPatientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\traitmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Pages\UserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Clinique.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Clinique.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Clinique.edmx.diagram">
+      <DependentUpon>Clinique.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\Fonts\Comfortaa-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Comfortaa-Light.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Clinique.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Clinique.edmx</DependentUpon>
+      <LastGenOutput>Clinique.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Clinique.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Clinique.edmx</DependentUpon>
+      <LastGenOutput>Clinique1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pic\images.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pic\pngtree-cartoon-doctor-image-design-picture-image_1068299.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pic\images %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.6.3.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.3.0\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\PropertyChanged.Fody.3.3.1\build\PropertyChanged.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PropertyChanged.Fody.3.3.1\build\PropertyChanged.Fody.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Fody.6.3.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.3.0\build\Fody.targets')" />
+</Project>

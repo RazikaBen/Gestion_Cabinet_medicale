@@ -1,0 +1,2690 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="cliniqueModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACHAT">
+          <Key>
+            <PropertyRef Name="ID_ACHAT" />
+          </Key>
+          <Property Name="ID_ACHAT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUANTITE_ACHAT" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TOTAL_ACHAT" Type="money" Nullable="false" />
+          <Property Name="ID_FOURNISSEUR" Type="int" />
+          <Property Name="ID_PRODUIT" Type="int" />
+          <Property Name="ID_LIVRAISON" Type="int" />
+          <Property Name="ID_CAISSE" Type="int" />
+        </EntityType>
+        <EntityType Name="ANTECEDANT">
+          <Key>
+            <PropertyRef Name="ID_ANTECEDANT" />
+          </Key>
+          <Property Name="ID_ANTECEDANT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TYPE_ANTECEDANT" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DESCRIP_ANTECEDANT" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TRAITEMNT_HABITUEL_OCCASIONEL" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="AUTORISATION">
+          <Key>
+            <PropertyRef Name="ID_AUTORISATION" />
+          </Key>
+          <Property Name="ID_AUTORISATION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JUSTIFICATION_AUTORISATION" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="OBSERVATION_AUTORISATION" Type="varchar" MaxLength="100" />
+          <Property Name="ID_CONSULTATION" Type="int" />
+          <Property Name="ID_SERVICE" Type="int" />
+        </EntityType>
+        <EntityType Name="CAISSE">
+          <Key>
+            <PropertyRef Name="ID_CAISSE" />
+          </Key>
+          <Property Name="ID_CAISSE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_CAISSE" Type="date" Nullable="false" />
+          <Property Name="SOMME_PAYE" Type="money" Nullable="false" />
+          <Property Name="ID_PAIEMENT" Type="int" />
+        </EntityType>
+        <EntityType Name="CAPTURATION_IMAGE">
+          <Key>
+            <PropertyRef Name="ID_CAPTURATION_IMAGE" />
+          </Key>
+          <Property Name="ID_CAPTURATION_IMAGE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_CAPTURE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IMAGEE" Type="varbinary(max)" Nullable="false" />
+          <Property Name="DATE_CAPTURE" Type="date" Nullable="false" />
+          <Property Name="OBSERVATION_IMAGE" Type="varchar" MaxLength="250" />
+          <Property Name="ID_CONSULTATION" Type="int" />
+          <Property Name="ID_EQUIPEMENT" Type="int" />
+        </EntityType>
+        <EntityType Name="CHAMBRE">
+          <Key>
+            <PropertyRef Name="ID_CHAMBRE" />
+          </Key>
+          <Property Name="ID_CHAMBRE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NBR_LIT" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="int" />
+        </EntityType>
+        <EntityType Name="CLINIQUE">
+          <Key>
+            <PropertyRef Name="ID_CLINIQUE" />
+          </Key>
+          <Property Name="ID_CLINIQUE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_CLINIQUE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="POPRIETAIRE" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="SPECIALITE" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="REGISTRE_COM" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TEL1_CLINIQUE" Type="varchar" MaxLength="10" />
+          <Property Name="TEL2_CLINIQUE" Type="varchar" MaxLength="9" />
+          <Property Name="ADRESSE_CLINIQUE" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'clinique.dbo.CLINIQUE_DEPARTEMENT' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CLINIQUE_DEPARTEMENT">
+          <Property Name="ID_CLINIQUE" Type="int" />
+          <Property Name="ID_DEPARTEMENT" Type="int" />
+        </EntityType>-->
+        <EntityType Name="CONSOMATION">
+          <Key>
+            <PropertyRef Name="ID_CONSOMATION" />
+          </Key>
+          <Property Name="ID_CONSOMATION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRODUIT_CONSOME" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="QUANTITE_CONSOME" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DAT_CONSOMATION" Type="date" Nullable="false" />
+          <Property Name="ID_STOCK" Type="int" />
+        </EntityType>
+        <EntityType Name="CONSULTATION">
+          <Key>
+            <PropertyRef Name="ID_CONSULTATION" />
+          </Key>
+          <Property Name="ID_CONSULTATION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_CONS" Type="date" Nullable="false" />
+          <Property Name="PRIX_CONS" Type="money" Nullable="false" />
+          <Property Name="TOTAL_CONS" Type="money" Nullable="false" />
+          <Property Name="ID_PATIENT" Type="int" />
+          <Property Name="ID_MEDECIN" Type="int" />
+          <Property Name="ID_CLINIQUE" Type="int" />
+          <Property Name="ID_EXAMEN" Type="int" />
+          <Property Name="ID_PAIEMENT" Type="int" />
+        </EntityType>
+        <EntityType Name="DEPARTEMENT">
+          <Key>
+            <PropertyRef Name="ID_DEPARTEMENT" />
+          </Key>
+          <Property Name="ID_DEPARTEMENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_DEPARTEMENT" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEPENSE_CLINIQUE">
+          <Key>
+            <PropertyRef Name="ID_DEPENSE" />
+          </Key>
+          <Property Name="ID_DEPENSE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MONTANT_RETIRE" Type="money" Nullable="false" />
+          <Property Name="JUSTIFICATION" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="DATE_DEPENSE" Type="date" Nullable="false" />
+          <Property Name="ID_CAISSE" Type="int" />
+          <Property Name="ID_MEDECIN" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'clinique.dbo.DIAGNOSTIQUER' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DIAGNOSTIQUER">
+          <Property Name="ID_CONSULTATION" Type="int" />
+          <Property Name="ID_MALADIE" Type="int" />
+        </EntityType>-->
+        <EntityType Name="EMPLOYE">
+          <Key>
+            <PropertyRef Name="ID_EMPLOYE" />
+          </Key>
+          <Property Name="ID_EMPLOYE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_EMPLOYE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PRENOM_EMPLOYE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DATEN_E" Type="date" Nullable="false" />
+          <Property Name="SEXE_EMPLOYE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TEL1_EMPLOYE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TEL2_EMPLOYE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EMAIL_EMPLOYE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SITUATION_FAMILIALE_E" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="GROUPAGE_E" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="NIVEAU_ETUDE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ADRESSE_EMPLOYE" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="SALAIRE_E" Type="money" Nullable="false" />
+          <Property Name="NUM_CCP_E" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="NUM_ASSUR_E" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="STATUT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ROTATION" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="int" />
+        </EntityType>
+        <EntityType Name="EQUIPEMENT">
+          <Key>
+            <PropertyRef Name="ID_EQUIPEMENT" />
+          </Key>
+          <Property Name="ID_EQUIPEMENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_EQUIPEMENT" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="MARQUE_EQUIPEMENT" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="int" />
+        </EntityType>
+        <EntityType Name="EXAMEN">
+          <Key>
+            <PropertyRef Name="ID_EXAMEN" />
+          </Key>
+          <Property Name="ID_EXAMEN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_EXAM" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="OBSERVATION_EXAM" Type="varchar" MaxLength="250" />
+          <Property Name="PRIX_EXAM" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FACTURE">
+          <Key>
+            <PropertyRef Name="ID_FACTURE" />
+          </Key>
+          <Property Name="ID_FACTURE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_OPERATION" Type="date" Nullable="false" />
+          <Property Name="INTITULE" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="VERSEMENT" Type="money" />
+          <Property Name="RESTE" Type="money" />
+          <Property Name="TOTAL" Type="money" Nullable="false" />
+          <Property Name="ANCIEN_CREDIT" Type="money" />
+          <Property Name="VALIDE_FACTURE" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="ID_FOURNISSEUR" Type="int" />
+          <Property Name="ID_EMPLOYE" Type="int" />
+        </EntityType>
+        <EntityType Name="FOURNISSEUR">
+          <Key>
+            <PropertyRef Name="ID_FOURNISSEUR" />
+          </Key>
+          <Property Name="ID_FOURNISSEUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_FOURNISSEUR" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="TEL1_FOURNISSEUR" Type="varchar" MaxLength="10" />
+          <Property Name="TEL2_FOURNISSEUR" Type="varchar" MaxLength="9" />
+          <Property Name="ADRESSE_FOURNISSEUR" Type="varchar" MaxLength="60" />
+          <Property Name="EMAIL_FOURNISSEUR" Type="varchar" MaxLength="50" />
+          <Property Name="PROFFESSION_FOURNISSEUR" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="CREDIT_FOURNISSEUR" Type="money" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'clinique.dbo.HOSPITALISATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HOSPITALISATION">
+          <Key>
+            <PropertyRef Name="lit" />
+            <PropertyRef Name="date_host" />
+          </Key>
+          <Property Name="ID_PATIENT" Type="int" />
+          <Property Name="ID_SERVICE" Type="int" />
+          <Property Name="ID_CHAMBRE" Type="int" />
+          <Property Name="lit" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="date_host" Type="date" Nullable="false" />
+          <Property Name="ID_AUTORISATION" Type="int" />
+        </EntityType>
+        <EntityType Name="LIVRAISON">
+          <Key>
+            <PropertyRef Name="ID_LIVRAISON" />
+          </Key>
+          <Property Name="ID_LIVRAISON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_LIVRAISON" Type="date" Nullable="false" />
+          <Property Name="PRIX_LIVRAISON" Type="money" />
+          <Property Name="ID_FOURNISSEUR" Type="int" />
+          <Property Name="ID_PRODUIT" Type="int" />
+        </EntityType>
+        <EntityType Name="MALADIE">
+          <Key>
+            <PropertyRef Name="ID_MALADIE" />
+          </Key>
+          <Property Name="ID_MALADIE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FAMILLE_MALADIE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESIGNATION" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MEDECIN">
+          <Key>
+            <PropertyRef Name="ID_MEDECIN" />
+          </Key>
+          <Property Name="ID_MEDECIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_MEDECIN" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PRENOM_MEDECIN" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DATEN_M" Type="date" Nullable="false" />
+          <Property Name="SEXE_MEDECIN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TEL1_MEDECIN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TEL2_MEDECIN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EMAIL_MEDECIN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SITUATION_FAMILIALE_M" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="GROUPAGE_M" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="SPECIALITE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ADRESSE_MEDECIN" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="SALAIRE_M" Type="money" Nullable="false" />
+          <Property Name="NUM_CCP_M" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="NUM_ASSUR_M" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="int" />
+        </EntityType>
+        <EntityType Name="MEDICAMENT">
+          <Key>
+            <PropertyRef Name="ID_MEDICAMENT" />
+          </Key>
+          <Property Name="ID_MEDICAMENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DCI" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="MARQUE_MEDICAMENT" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOSAGE" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAIEMENT">
+          <Key>
+            <PropertyRef Name="ID_PAIEMENT" />
+          </Key>
+          <Property Name="ID_PAIEMENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MODE_PAIEMENT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DATE_PAIEMENT" Type="date" Nullable="false" />
+          <Property Name="VERSEMENT_PAIEMENT" Type="money" />
+          <Property Name="RESTE_PAIEMENT" Type="money" />
+          <Property Name="TOTAL_PAIEMENT" Type="money" />
+        </EntityType>
+        <EntityType Name="PATIENT">
+          <Key>
+            <PropertyRef Name="ID_PATIENT" />
+          </Key>
+          <Property Name="ID_PATIENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_PATIENT" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PRENOM_PATIENT" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DATEN_P" Type="date" Nullable="false" />
+          <Property Name="SEXE_PATIENT" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TEL1_PATIENT" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TEL2_PATIENT" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EMAIL_PATIENT" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SITUATION_FAMILIALE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="GROUPAGE" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PROFFESION" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ADRESSE_PATIENT" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="NUM_ASSUR_P" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'clinique.dbo.PATIENT_ANTECEDANT' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PATIENT_ANTECEDANT">
+          <Property Name="ID_PATIENT" Type="int" />
+          <Property Name="ID_ANTECEDANT" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'clinique.dbo.PRESCRIRE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PRESCRIRE">
+          <Key>
+            <PropertyRef Name="POSOLOGIE" />
+          </Key>
+          <Property Name="ID_CONSULTATION" Type="int" />
+          <Property Name="ID_MEDICAMENT" Type="int" />
+          <Property Name="POSOLOGIE" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="DUREE_TRAITEMENT" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="PRODUIT">
+          <Key>
+            <PropertyRef Name="ID_PRODUIT" />
+          </Key>
+          <Property Name="ID_PRODUIT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_PRODUIT" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRIX_PRODUIT" Type="money" Nullable="false" />
+          <Property Name="DATE_EXP" Type="date" />
+          <Property Name="CODE_BAR" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="RDV">
+          <Key>
+            <PropertyRef Name="ID_RDV" />
+          </Key>
+          <Property Name="ID_RDV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_RDV" Type="date" Nullable="false" />
+          <Property Name="DATE_CREATION" Type="datetime" Nullable="false" />
+          <Property Name="RAISON" Type="varchar" MaxLength="200" />
+          <Property Name="ID_MEDECIN" Type="int" />
+          <Property Name="ID_PATIENT" Type="int" />
+          <Property Name="ID_EMPLOYE" Type="int" />
+        </EntityType>
+        <EntityType Name="RESULTAT_PATIENT">
+          <Key>
+            <PropertyRef Name="ID_RESULTAT_PATIENT" />
+          </Key>
+          <Property Name="ID_RESULTAT_PATIENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_RESULTAT_PATIENT" Type="date" Nullable="false" />
+          <Property Name="COMPTE_RENDU_RESULTATP" Type="varchar" MaxLength="250" />
+          <Property Name="OBSERVATION_RESULTAT_PATIENT" Type="varchar" MaxLength="60" />
+          <Property Name="ID_CONSULTATION" Type="int" />
+          <Property Name="ID_EXAMEN" Type="int" />
+          <Property Name="ID_CAPTURATION_IMAGE" Type="int" />
+          <Property Name="ID_CLINIQUE" Type="int" />
+        </EntityType>
+        <EntityType Name="SERVICEE">
+          <Key>
+            <PropertyRef Name="ID_SERVICE" />
+          </Key>
+          <Property Name="ID_SERVICE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_SERVICE" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="ID_DEPARTEMENT" Type="int" />
+        </EntityType>
+        <EntityType Name="STOCK">
+          <Key>
+            <PropertyRef Name="ID_STOCK" />
+          </Key>
+          <Property Name="ID_STOCK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_STOCK" Type="date" Nullable="false" />
+          <Property Name="QUANTITE_ENTRE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="QUANTITE_SORTIE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="QUANTITE_REEL" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID_PRODUIT" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UTILISATEUR">
+          <Key>
+            <PropertyRef Name="ID_UTILISATEUR" />
+          </Key>
+          <Property Name="ID_UTILISATEUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_UTILISATEUR" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="MTPS" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ID_MEDECIN" Type="int" />
+          <Property Name="ID_EMPLOYE" Type="int" />
+        </EntityType>
+        <Association Name="FK__ACHAT__ID_CAISSE__1A9EF37A">
+          <End Role="CAISSE" Type="Self.CAISSE" Multiplicity="0..1" />
+          <End Role="ACHAT" Type="Self.ACHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAISSE">
+              <PropertyRef Name="ID_CAISSE" />
+            </Principal>
+            <Dependent Role="ACHAT">
+              <PropertyRef Name="ID_CAISSE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ACHAT__ID_FOURNI__0D44F85C">
+          <End Role="FOURNISSEUR" Type="Self.FOURNISSEUR" Multiplicity="0..1" />
+          <End Role="ACHAT" Type="Self.ACHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Principal>
+            <Dependent Role="ACHAT">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ACHAT__ID_LIVRAI__0F2D40CE">
+          <End Role="LIVRAISON" Type="Self.LIVRAISON" Multiplicity="0..1" />
+          <End Role="ACHAT" Type="Self.ACHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIVRAISON">
+              <PropertyRef Name="ID_LIVRAISON" />
+            </Principal>
+            <Dependent Role="ACHAT">
+              <PropertyRef Name="ID_LIVRAISON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ACHAT__ID_PRODUI__0E391C95">
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="0..1" />
+          <End Role="ACHAT" Type="Self.ACHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Principal>
+            <Dependent Role="ACHAT">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AUTORISAT__ID_CO__662B2B3B">
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="0..1" />
+          <End Role="AUTORISATION" Type="Self.AUTORISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSULTATION">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Principal>
+            <Dependent Role="AUTORISATION">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AUTORISAT__ID_SE__671F4F74">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="AUTORISATION" Type="Self.AUTORISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="AUTORISATION">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CAISSE__ID_PAIEM__19AACF41">
+          <End Role="PAIEMENT" Type="Self.PAIEMENT" Multiplicity="0..1" />
+          <End Role="CAISSE" Type="Self.CAISSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAIEMENT">
+              <PropertyRef Name="ID_PAIEMENT" />
+            </Principal>
+            <Dependent Role="CAISSE">
+              <PropertyRef Name="ID_PAIEMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CAPTURATI__ID_CO__40058253">
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="0..1" />
+          <End Role="CAPTURATION_IMAGE" Type="Self.CAPTURATION_IMAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSULTATION">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Principal>
+            <Dependent Role="CAPTURATION_IMAGE">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CAPTURATI__ID_EQ__40F9A68C">
+          <End Role="EQUIPEMENT" Type="Self.EQUIPEMENT" Multiplicity="0..1" />
+          <End Role="CAPTURATION_IMAGE" Type="Self.CAPTURATION_IMAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPEMENT">
+              <PropertyRef Name="ID_EQUIPEMENT" />
+            </Principal>
+            <Dependent Role="CAPTURATION_IMAGE">
+              <PropertyRef Name="ID_EQUIPEMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CHAMBRE__ID_SERV__1F98B2C1">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="CHAMBRE" Type="Self.CHAMBRE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="CHAMBRE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'clinique.dbo.CLINIQUE_DEPARTEMENT' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__CLINIQUE___ID_CL__5F7E2DAC" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'clinique.dbo.CLINIQUE_DEPARTEMENT' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__CLINIQUE___ID_DE__607251E5" />-->
+        <Association Name="FK__CONSOMATI__ID_ST__251C81ED">
+          <End Role="STOCK" Type="Self.STOCK" Multiplicity="0..1" />
+          <End Role="CONSOMATION" Type="Self.CONSOMATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STOCK">
+              <PropertyRef Name="ID_STOCK" />
+            </Principal>
+            <Dependent Role="CONSOMATION">
+              <PropertyRef Name="ID_STOCK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSULTAT__ID_CL__3A4CA8FD">
+          <End Role="CLINIQUE" Type="Self.CLINIQUE" Multiplicity="0..1" />
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIQUE">
+              <PropertyRef Name="ID_CLINIQUE" />
+            </Principal>
+            <Dependent Role="CONSULTATION">
+              <PropertyRef Name="ID_CLINIQUE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSULTAT__ID_EX__3B40CD36">
+          <End Role="EXAMEN" Type="Self.EXAMEN" Multiplicity="0..1" />
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXAMEN">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Principal>
+            <Dependent Role="CONSULTATION">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSULTAT__ID_ME__395884C4">
+          <End Role="MEDECIN" Type="Self.MEDECIN" Multiplicity="0..1" />
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDECIN">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Principal>
+            <Dependent Role="CONSULTATION">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSULTAT__ID_PA__3864608B">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="0..1" />
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="ID_PATIENT" />
+            </Principal>
+            <Dependent Role="CONSULTATION">
+              <PropertyRef Name="ID_PATIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSULTAT__ID_PA__7A3223E8">
+          <End Role="PAIEMENT" Type="Self.PAIEMENT" Multiplicity="0..1" />
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAIEMENT">
+              <PropertyRef Name="ID_PAIEMENT" />
+            </Principal>
+            <Dependent Role="CONSULTATION">
+              <PropertyRef Name="ID_PAIEMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DEPENSE_C__ID_CA__1F63A897">
+          <End Role="CAISSE" Type="Self.CAISSE" Multiplicity="0..1" />
+          <End Role="DEPENSE_CLINIQUE" Type="Self.DEPENSE_CLINIQUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAISSE">
+              <PropertyRef Name="ID_CAISSE" />
+            </Principal>
+            <Dependent Role="DEPENSE_CLINIQUE">
+              <PropertyRef Name="ID_CAISSE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DEPENSE_C__ID_ME__2057CCD0">
+          <End Role="MEDECIN" Type="Self.MEDECIN" Multiplicity="0..1" />
+          <End Role="DEPENSE_CLINIQUE" Type="Self.DEPENSE_CLINIQUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDECIN">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Principal>
+            <Dependent Role="DEPENSE_CLINIQUE">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'clinique.dbo.DIAGNOSTIQUER' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__DIAGNOSTI__ID_CO__503BEA1C" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'clinique.dbo.DIAGNOSTIQUER' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__DIAGNOSTI__ID_MA__51300E55" />-->
+        <Association Name="FK__EMPLOYE__ID_SERV__690797E6">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="EMPLOYE" Type="Self.EMPLOYE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="EMPLOYE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EQUIPEMEN__ID_SE__74794A92">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="EQUIPEMENT" Type="Self.EQUIPEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="EQUIPEMENT">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FACTURE__ID_EMPL__2BC97F7C">
+          <End Role="EMPLOYE" Type="Self.EMPLOYE" Multiplicity="0..1" />
+          <End Role="FACTURE" Type="Self.FACTURE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYE">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Principal>
+            <Dependent Role="FACTURE">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FACTURE__ID_FOUR__2AD55B43">
+          <End Role="FOURNISSEUR" Type="Self.FOURNISSEUR" Multiplicity="0..1" />
+          <End Role="FACTURE" Type="Self.FACTURE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Principal>
+            <Dependent Role="FACTURE">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOSPITALI__ID_AU__681373AD">
+          <End Role="AUTORISATION" Type="Self.AUTORISATION" Multiplicity="0..1" />
+          <End Role="HOSPITALISATION" Type="Self.HOSPITALISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AUTORISATION">
+              <PropertyRef Name="ID_AUTORISATION" />
+            </Principal>
+            <Dependent Role="HOSPITALISATION">
+              <PropertyRef Name="ID_AUTORISATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOSPITALI__ID_CH__2FCF1A8A">
+          <End Role="CHAMBRE" Type="Self.CHAMBRE" Multiplicity="0..1" />
+          <End Role="HOSPITALISATION" Type="Self.HOSPITALISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHAMBRE">
+              <PropertyRef Name="ID_CHAMBRE" />
+            </Principal>
+            <Dependent Role="HOSPITALISATION">
+              <PropertyRef Name="ID_CHAMBRE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOSPITALI__ID_PA__2DE6D218">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="0..1" />
+          <End Role="HOSPITALISATION" Type="Self.HOSPITALISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="ID_PATIENT" />
+            </Principal>
+            <Dependent Role="HOSPITALISATION">
+              <PropertyRef Name="ID_PATIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOSPITALI__ID_SE__2EDAF651">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="HOSPITALISATION" Type="Self.HOSPITALISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="HOSPITALISATION">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIVRAISON__ID_FO__04AFB25B">
+          <End Role="FOURNISSEUR" Type="Self.FOURNISSEUR" Multiplicity="0..1" />
+          <End Role="LIVRAISON" Type="Self.LIVRAISON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Principal>
+            <Dependent Role="LIVRAISON">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIVRAISON__ID_PR__10216507">
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="0..1" />
+          <End Role="LIVRAISON" Type="Self.LIVRAISON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Principal>
+            <Dependent Role="LIVRAISON">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MEDECIN__ID_SERV__756D6ECB">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="MEDECIN" Type="Self.MEDECIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="MEDECIN">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'clinique.dbo.PATIENT_ANTECEDANT' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__PATIENT_A__ID_AN__2BFE89A6" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'clinique.dbo.PATIENT_ANTECEDANT' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__PATIENT_A__ID_PA__2B0A656D" />-->
+        <Association Name="FK__PRESCRIRE__ID_CO__4D5F7D71">
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="0..1" />
+          <End Role="PRESCRIRE" Type="Self.PRESCRIRE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSULTATION">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Principal>
+            <Dependent Role="PRESCRIRE">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRESCRIRE__ID_ME__4E53A1AA">
+          <End Role="MEDICAMENT" Type="Self.MEDICAMENT" Multiplicity="0..1" />
+          <End Role="PRESCRIRE" Type="Self.PRESCRIRE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICAMENT">
+              <PropertyRef Name="ID_MEDICAMENT" />
+            </Principal>
+            <Dependent Role="PRESCRIRE">
+              <PropertyRef Name="ID_MEDICAMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RDV__ID_EMPLOYE__719CDDE7">
+          <End Role="EMPLOYE" Type="Self.EMPLOYE" Multiplicity="0..1" />
+          <End Role="RDV" Type="Self.RDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYE">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Principal>
+            <Dependent Role="RDV">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RDV__ID_MEDECIN__6FB49575">
+          <End Role="MEDECIN" Type="Self.MEDECIN" Multiplicity="0..1" />
+          <End Role="RDV" Type="Self.RDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDECIN">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Principal>
+            <Dependent Role="RDV">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RDV__ID_PATIENT__70A8B9AE">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="0..1" />
+          <End Role="RDV" Type="Self.RDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="ID_PATIENT" />
+            </Principal>
+            <Dependent Role="RDV">
+              <PropertyRef Name="ID_PATIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RESULTAT___ID_CA__47A6A41B">
+          <End Role="CAPTURATION_IMAGE" Type="Self.CAPTURATION_IMAGE" Multiplicity="0..1" />
+          <End Role="RESULTAT_PATIENT" Type="Self.RESULTAT_PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAPTURATION_IMAGE">
+              <PropertyRef Name="ID_CAPTURATION_IMAGE" />
+            </Principal>
+            <Dependent Role="RESULTAT_PATIENT">
+              <PropertyRef Name="ID_CAPTURATION_IMAGE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RESULTAT___ID_CL__489AC854">
+          <End Role="CLINIQUE" Type="Self.CLINIQUE" Multiplicity="0..1" />
+          <End Role="RESULTAT_PATIENT" Type="Self.RESULTAT_PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIQUE">
+              <PropertyRef Name="ID_CLINIQUE" />
+            </Principal>
+            <Dependent Role="RESULTAT_PATIENT">
+              <PropertyRef Name="ID_CLINIQUE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RESULTAT___ID_CO__45BE5BA9">
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="0..1" />
+          <End Role="RESULTAT_PATIENT" Type="Self.RESULTAT_PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSULTATION">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Principal>
+            <Dependent Role="RESULTAT_PATIENT">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RESULTAT___ID_EX__46B27FE2">
+          <End Role="EXAMEN" Type="Self.EXAMEN" Multiplicity="0..1" />
+          <End Role="RESULTAT_PATIENT" Type="Self.RESULTAT_PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXAMEN">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Principal>
+            <Dependent Role="RESULTAT_PATIENT">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SERVICEE__ID_DEP__7C4F7684">
+          <End Role="DEPARTEMENT" Type="Self.DEPARTEMENT" Multiplicity="0..1" />
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTEMENT">
+              <PropertyRef Name="ID_DEPARTEMENT" />
+            </Principal>
+            <Dependent Role="SERVICEE">
+              <PropertyRef Name="ID_DEPARTEMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__STOCK__ID_PRODUI__14E61A24">
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="0..1" />
+          <End Role="STOCK" Type="Self.STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Principal>
+            <Dependent Role="STOCK">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UTILISATE__ID_EM__73852659">
+          <End Role="EMPLOYE" Type="Self.EMPLOYE" Multiplicity="0..1" />
+          <End Role="UTILISATEUR" Type="Self.UTILISATEUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYE">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Principal>
+            <Dependent Role="UTILISATEUR">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UTILISATE__ID_ME__72910220">
+          <End Role="MEDECIN" Type="Self.MEDECIN" Multiplicity="0..1" />
+          <End Role="UTILISATEUR" Type="Self.UTILISATEUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDECIN">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Principal>
+            <Dependent Role="UTILISATEUR">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cliniqueModelStoreContainer">
+          <EntitySet Name="ACHAT" EntityType="Self.ACHAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ANTECEDANT" EntityType="Self.ANTECEDANT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AUTORISATION" EntityType="Self.AUTORISATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAISSE" EntityType="Self.CAISSE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAPTURATION_IMAGE" EntityType="Self.CAPTURATION_IMAGE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHAMBRE" EntityType="Self.CHAMBRE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLINIQUE" EntityType="Self.CLINIQUE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONSOMATION" EntityType="Self.CONSOMATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONSULTATION" EntityType="Self.CONSULTATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTEMENT" EntityType="Self.DEPARTEMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPENSE_CLINIQUE" EntityType="Self.DEPENSE_CLINIQUE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYE" EntityType="Self.EMPLOYE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EQUIPEMENT" EntityType="Self.EQUIPEMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXAMEN" EntityType="Self.EXAMEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTURE" EntityType="Self.FACTURE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FOURNISSEUR" EntityType="Self.FOURNISSEUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LIVRAISON" EntityType="Self.LIVRAISON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MALADIE" EntityType="Self.MALADIE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEDECIN" EntityType="Self.MEDECIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEDICAMENT" EntityType="Self.MEDICAMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAIEMENT" EntityType="Self.PAIEMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PATIENT" EntityType="Self.PATIENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUIT" EntityType="Self.PRODUIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RDV" EntityType="Self.RDV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RESULTAT_PATIENT" EntityType="Self.RESULTAT_PATIENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICEE" EntityType="Self.SERVICEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STOCK" EntityType="Self.STOCK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UTILISATEUR" EntityType="Self.UTILISATEUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOSPITALISATION" EntityType="Self.HOSPITALISATION" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HOSPITALISATION].[ID_PATIENT] AS [ID_PATIENT], 
+    [HOSPITALISATION].[ID_SERVICE] AS [ID_SERVICE], 
+    [HOSPITALISATION].[ID_CHAMBRE] AS [ID_CHAMBRE], 
+    [HOSPITALISATION].[lit] AS [lit], 
+    [HOSPITALISATION].[date_host] AS [date_host], 
+    [HOSPITALISATION].[ID_AUTORISATION] AS [ID_AUTORISATION]
+    FROM [dbo].[HOSPITALISATION] AS [HOSPITALISATION]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PRESCRIRE" EntityType="Self.PRESCRIRE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PRESCRIRE].[ID_CONSULTATION] AS [ID_CONSULTATION], 
+    [PRESCRIRE].[ID_MEDICAMENT] AS [ID_MEDICAMENT], 
+    [PRESCRIRE].[POSOLOGIE] AS [POSOLOGIE], 
+    [PRESCRIRE].[DUREE_TRAITEMENT] AS [DUREE_TRAITEMENT]
+    FROM [dbo].[PRESCRIRE] AS [PRESCRIRE]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__ACHAT__ID_CAISSE__1A9EF37A" Association="Self.FK__ACHAT__ID_CAISSE__1A9EF37A">
+            <End Role="CAISSE" EntitySet="CAISSE" />
+            <End Role="ACHAT" EntitySet="ACHAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ACHAT__ID_FOURNI__0D44F85C" Association="Self.FK__ACHAT__ID_FOURNI__0D44F85C">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
+            <End Role="ACHAT" EntitySet="ACHAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ACHAT__ID_LIVRAI__0F2D40CE" Association="Self.FK__ACHAT__ID_LIVRAI__0F2D40CE">
+            <End Role="LIVRAISON" EntitySet="LIVRAISON" />
+            <End Role="ACHAT" EntitySet="ACHAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ACHAT__ID_PRODUI__0E391C95" Association="Self.FK__ACHAT__ID_PRODUI__0E391C95">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="ACHAT" EntitySet="ACHAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AUTORISAT__ID_CO__662B2B3B" Association="Self.FK__AUTORISAT__ID_CO__662B2B3B">
+            <End Role="CONSULTATION" EntitySet="CONSULTATION" />
+            <End Role="AUTORISATION" EntitySet="AUTORISATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AUTORISAT__ID_SE__671F4F74" Association="Self.FK__AUTORISAT__ID_SE__671F4F74">
+            <End Role="SERVICEE" EntitySet="SERVICEE" />
+            <End Role="AUTORISATION" EntitySet="AUTORISATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CAISSE__ID_PAIEM__19AACF41" Association="Self.FK__CAISSE__ID_PAIEM__19AACF41">
+            <End Role="PAIEMENT" EntitySet="PAIEMENT" />
+            <End Role="CAISSE" EntitySet="CAISSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CAPTURATI__ID_CO__40058253" Association="Self.FK__CAPTURATI__ID_CO__40058253">
+            <End Role="CONSULTATION" EntitySet="CONSULTATION" />
+            <End Role="CAPTURATION_IMAGE" EntitySet="CAPTURATION_IMAGE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CAPTURATI__ID_EQ__40F9A68C" Association="Self.FK__CAPTURATI__ID_EQ__40F9A68C">
+            <End Role="EQUIPEMENT" EntitySet="EQUIPEMENT" />
+            <End Role="CAPTURATION_IMAGE" EntitySet="CAPTURATION_IMAGE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHAMBRE__ID_SERV__1F98B2C1" Association="Self.FK__CHAMBRE__ID_SERV__1F98B2C1">
+            <End Role="SERVICEE" EntitySet="SERVICEE" />
+            <End Role="CHAMBRE" EntitySet="CHAMBRE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSOMATI__ID_ST__251C81ED" Association="Self.FK__CONSOMATI__ID_ST__251C81ED">
+            <End Role="STOCK" EntitySet="STOCK" />
+            <End Role="CONSOMATION" EntitySet="CONSOMATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSULTAT__ID_CL__3A4CA8FD" Association="Self.FK__CONSULTAT__ID_CL__3A4CA8FD">
+            <End Role="CLINIQUE" EntitySet="CLINIQUE" />
+            <End Role="CONSULTATION" EntitySet="CONSULTATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSULTAT__ID_EX__3B40CD36" Association="Self.FK__CONSULTAT__ID_EX__3B40CD36">
+            <End Role="EXAMEN" EntitySet="EXAMEN" />
+            <End Role="CONSULTATION" EntitySet="CONSULTATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSULTAT__ID_ME__395884C4" Association="Self.FK__CONSULTAT__ID_ME__395884C4">
+            <End Role="MEDECIN" EntitySet="MEDECIN" />
+            <End Role="CONSULTATION" EntitySet="CONSULTATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSULTAT__ID_PA__3864608B" Association="Self.FK__CONSULTAT__ID_PA__3864608B">
+            <End Role="PATIENT" EntitySet="PATIENT" />
+            <End Role="CONSULTATION" EntitySet="CONSULTATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSULTAT__ID_PA__7A3223E8" Association="Self.FK__CONSULTAT__ID_PA__7A3223E8">
+            <End Role="PAIEMENT" EntitySet="PAIEMENT" />
+            <End Role="CONSULTATION" EntitySet="CONSULTATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DEPENSE_C__ID_CA__1F63A897" Association="Self.FK__DEPENSE_C__ID_CA__1F63A897">
+            <End Role="CAISSE" EntitySet="CAISSE" />
+            <End Role="DEPENSE_CLINIQUE" EntitySet="DEPENSE_CLINIQUE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DEPENSE_C__ID_ME__2057CCD0" Association="Self.FK__DEPENSE_C__ID_ME__2057CCD0">
+            <End Role="MEDECIN" EntitySet="MEDECIN" />
+            <End Role="DEPENSE_CLINIQUE" EntitySet="DEPENSE_CLINIQUE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EMPLOYE__ID_SERV__690797E6" Association="Self.FK__EMPLOYE__ID_SERV__690797E6">
+            <End Role="SERVICEE" EntitySet="SERVICEE" />
+            <End Role="EMPLOYE" EntitySet="EMPLOYE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EQUIPEMEN__ID_SE__74794A92" Association="Self.FK__EQUIPEMEN__ID_SE__74794A92">
+            <End Role="SERVICEE" EntitySet="SERVICEE" />
+            <End Role="EQUIPEMENT" EntitySet="EQUIPEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FACTURE__ID_EMPL__2BC97F7C" Association="Self.FK__FACTURE__ID_EMPL__2BC97F7C">
+            <End Role="EMPLOYE" EntitySet="EMPLOYE" />
+            <End Role="FACTURE" EntitySet="FACTURE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FACTURE__ID_FOUR__2AD55B43" Association="Self.FK__FACTURE__ID_FOUR__2AD55B43">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
+            <End Role="FACTURE" EntitySet="FACTURE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOSPITALI__ID_AU__681373AD" Association="Self.FK__HOSPITALI__ID_AU__681373AD">
+            <End Role="AUTORISATION" EntitySet="AUTORISATION" />
+            <End Role="HOSPITALISATION" EntitySet="HOSPITALISATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOSPITALI__ID_CH__2FCF1A8A" Association="Self.FK__HOSPITALI__ID_CH__2FCF1A8A">
+            <End Role="CHAMBRE" EntitySet="CHAMBRE" />
+            <End Role="HOSPITALISATION" EntitySet="HOSPITALISATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOSPITALI__ID_PA__2DE6D218" Association="Self.FK__HOSPITALI__ID_PA__2DE6D218">
+            <End Role="PATIENT" EntitySet="PATIENT" />
+            <End Role="HOSPITALISATION" EntitySet="HOSPITALISATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOSPITALI__ID_SE__2EDAF651" Association="Self.FK__HOSPITALI__ID_SE__2EDAF651">
+            <End Role="SERVICEE" EntitySet="SERVICEE" />
+            <End Role="HOSPITALISATION" EntitySet="HOSPITALISATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIVRAISON__ID_FO__04AFB25B" Association="Self.FK__LIVRAISON__ID_FO__04AFB25B">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
+            <End Role="LIVRAISON" EntitySet="LIVRAISON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIVRAISON__ID_PR__10216507" Association="Self.FK__LIVRAISON__ID_PR__10216507">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="LIVRAISON" EntitySet="LIVRAISON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MEDECIN__ID_SERV__756D6ECB" Association="Self.FK__MEDECIN__ID_SERV__756D6ECB">
+            <End Role="SERVICEE" EntitySet="SERVICEE" />
+            <End Role="MEDECIN" EntitySet="MEDECIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRESCRIRE__ID_CO__4D5F7D71" Association="Self.FK__PRESCRIRE__ID_CO__4D5F7D71">
+            <End Role="CONSULTATION" EntitySet="CONSULTATION" />
+            <End Role="PRESCRIRE" EntitySet="PRESCRIRE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRESCRIRE__ID_ME__4E53A1AA" Association="Self.FK__PRESCRIRE__ID_ME__4E53A1AA">
+            <End Role="MEDICAMENT" EntitySet="MEDICAMENT" />
+            <End Role="PRESCRIRE" EntitySet="PRESCRIRE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RDV__ID_EMPLOYE__719CDDE7" Association="Self.FK__RDV__ID_EMPLOYE__719CDDE7">
+            <End Role="EMPLOYE" EntitySet="EMPLOYE" />
+            <End Role="RDV" EntitySet="RDV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RDV__ID_MEDECIN__6FB49575" Association="Self.FK__RDV__ID_MEDECIN__6FB49575">
+            <End Role="MEDECIN" EntitySet="MEDECIN" />
+            <End Role="RDV" EntitySet="RDV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RDV__ID_PATIENT__70A8B9AE" Association="Self.FK__RDV__ID_PATIENT__70A8B9AE">
+            <End Role="PATIENT" EntitySet="PATIENT" />
+            <End Role="RDV" EntitySet="RDV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RESULTAT___ID_CA__47A6A41B" Association="Self.FK__RESULTAT___ID_CA__47A6A41B">
+            <End Role="CAPTURATION_IMAGE" EntitySet="CAPTURATION_IMAGE" />
+            <End Role="RESULTAT_PATIENT" EntitySet="RESULTAT_PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RESULTAT___ID_CL__489AC854" Association="Self.FK__RESULTAT___ID_CL__489AC854">
+            <End Role="CLINIQUE" EntitySet="CLINIQUE" />
+            <End Role="RESULTAT_PATIENT" EntitySet="RESULTAT_PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RESULTAT___ID_CO__45BE5BA9" Association="Self.FK__RESULTAT___ID_CO__45BE5BA9">
+            <End Role="CONSULTATION" EntitySet="CONSULTATION" />
+            <End Role="RESULTAT_PATIENT" EntitySet="RESULTAT_PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RESULTAT___ID_EX__46B27FE2" Association="Self.FK__RESULTAT___ID_EX__46B27FE2">
+            <End Role="EXAMEN" EntitySet="EXAMEN" />
+            <End Role="RESULTAT_PATIENT" EntitySet="RESULTAT_PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SERVICEE__ID_DEP__7C4F7684" Association="Self.FK__SERVICEE__ID_DEP__7C4F7684">
+            <End Role="DEPARTEMENT" EntitySet="DEPARTEMENT" />
+            <End Role="SERVICEE" EntitySet="SERVICEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__STOCK__ID_PRODUI__14E61A24" Association="Self.FK__STOCK__ID_PRODUI__14E61A24">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="STOCK" EntitySet="STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UTILISATE__ID_EM__73852659" Association="Self.FK__UTILISATE__ID_EM__73852659">
+            <End Role="EMPLOYE" EntitySet="EMPLOYE" />
+            <End Role="UTILISATEUR" EntitySet="UTILISATEUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UTILISATE__ID_ME__72910220" Association="Self.FK__UTILISATE__ID_ME__72910220">
+            <End Role="MEDECIN" EntitySet="MEDECIN" />
+            <End Role="UTILISATEUR" EntitySet="UTILISATEUR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cliniqueModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACHAT">
+          <Key>
+            <PropertyRef Name="ID_ACHAT" />
+          </Key>
+          <Property Name="ID_ACHAT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QUANTITE_ACHAT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TOTAL_ACHAT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ID_FOURNISSEUR" Type="Int32" />
+          <Property Name="ID_PRODUIT" Type="Int32" />
+          <Property Name="ID_LIVRAISON" Type="Int32" />
+          <Property Name="ID_CAISSE" Type="Int32" />
+          <NavigationProperty Name="CAISSE" Relationship="Self.FK__ACHAT__ID_CAISSE__1A9EF37A" FromRole="ACHAT" ToRole="CAISSE" />
+          <NavigationProperty Name="FOURNISSEUR" Relationship="Self.FK__ACHAT__ID_FOURNI__0D44F85C" FromRole="ACHAT" ToRole="FOURNISSEUR" />
+          <NavigationProperty Name="LIVRAISON" Relationship="Self.FK__ACHAT__ID_LIVRAI__0F2D40CE" FromRole="ACHAT" ToRole="LIVRAISON" />
+          <NavigationProperty Name="PRODUIT" Relationship="Self.FK__ACHAT__ID_PRODUI__0E391C95" FromRole="ACHAT" ToRole="PRODUIT" />
+        </EntityType>
+        <EntityType Name="ANTECEDANT">
+          <Key>
+            <PropertyRef Name="ID_ANTECEDANT" />
+          </Key>
+          <Property Name="ID_ANTECEDANT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TYPE_ANTECEDANT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIP_ANTECEDANT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TRAITEMNT_HABITUEL_OCCASIONEL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AUTORISATION">
+          <Key>
+            <PropertyRef Name="ID_AUTORISATION" />
+          </Key>
+          <Property Name="ID_AUTORISATION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JUSTIFICATION_AUTORISATION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OBSERVATION_AUTORISATION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_CONSULTATION" Type="Int32" />
+          <Property Name="ID_SERVICE" Type="Int32" />
+          <NavigationProperty Name="CONSULTATION" Relationship="Self.FK__AUTORISAT__ID_CO__662B2B3B" FromRole="AUTORISATION" ToRole="CONSULTATION" />
+          <NavigationProperty Name="SERVICEE" Relationship="Self.FK__AUTORISAT__ID_SE__671F4F74" FromRole="AUTORISATION" ToRole="SERVICEE" />
+          <NavigationProperty Name="HOSPITALISATIONs" Relationship="Self.FK__HOSPITALI__ID_AU__681373AD" FromRole="AUTORISATION" ToRole="HOSPITALISATION" />
+        </EntityType>
+        <EntityType Name="CAISSE">
+          <Key>
+            <PropertyRef Name="ID_CAISSE" />
+          </Key>
+          <Property Name="ID_CAISSE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_CAISSE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SOMME_PAYE" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ID_PAIEMENT" Type="Int32" />
+          <NavigationProperty Name="ACHATs" Relationship="Self.FK__ACHAT__ID_CAISSE__1A9EF37A" FromRole="CAISSE" ToRole="ACHAT" />
+          <NavigationProperty Name="PAIEMENT" Relationship="Self.FK__CAISSE__ID_PAIEM__19AACF41" FromRole="CAISSE" ToRole="PAIEMENT" />
+          <NavigationProperty Name="DEPENSE_CLINIQUE" Relationship="Self.FK__DEPENSE_C__ID_CA__1F63A897" FromRole="CAISSE" ToRole="DEPENSE_CLINIQUE" />
+        </EntityType>
+        <EntityType Name="CAPTURATION_IMAGE">
+          <Key>
+            <PropertyRef Name="ID_CAPTURATION_IMAGE" />
+          </Key>
+          <Property Name="ID_CAPTURATION_IMAGE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_CAPTURE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGEE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="DATE_CAPTURE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OBSERVATION_IMAGE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ID_CONSULTATION" Type="Int32" />
+          <Property Name="ID_EQUIPEMENT" Type="Int32" />
+          <NavigationProperty Name="CONSULTATION" Relationship="Self.FK__CAPTURATI__ID_CO__40058253" FromRole="CAPTURATION_IMAGE" ToRole="CONSULTATION" />
+          <NavigationProperty Name="EQUIPEMENT" Relationship="Self.FK__CAPTURATI__ID_EQ__40F9A68C" FromRole="CAPTURATION_IMAGE" ToRole="EQUIPEMENT" />
+          <NavigationProperty Name="RESULTAT_PATIENT" Relationship="Self.FK__RESULTAT___ID_CA__47A6A41B" FromRole="CAPTURATION_IMAGE" ToRole="RESULTAT_PATIENT" />
+        </EntityType>
+        <EntityType Name="CHAMBRE">
+          <Key>
+            <PropertyRef Name="ID_CHAMBRE" />
+          </Key>
+          <Property Name="ID_CHAMBRE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NBR_LIT" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="Int32" />
+          <NavigationProperty Name="SERVICEE" Relationship="Self.FK__CHAMBRE__ID_SERV__1F98B2C1" FromRole="CHAMBRE" ToRole="SERVICEE" />
+          <NavigationProperty Name="HOSPITALISATIONs" Relationship="Self.FK__HOSPITALI__ID_CH__2FCF1A8A" FromRole="CHAMBRE" ToRole="HOSPITALISATION" />
+        </EntityType>
+        <EntityType Name="CLINIQUE">
+          <Key>
+            <PropertyRef Name="ID_CLINIQUE" />
+          </Key>
+          <Property Name="ID_CLINIQUE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_CLINIQUE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="POPRIETAIRE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPECIALITE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REGISTRE_COM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEL1_CLINIQUE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TEL2_CLINIQUE" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="ADRESSE_CLINIQUE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CONSULTATIONs" Relationship="Self.FK__CONSULTAT__ID_CL__3A4CA8FD" FromRole="CLINIQUE" ToRole="CONSULTATION" />
+          <NavigationProperty Name="RESULTAT_PATIENT" Relationship="Self.FK__RESULTAT___ID_CL__489AC854" FromRole="CLINIQUE" ToRole="RESULTAT_PATIENT" />
+        </EntityType>
+        <EntityType Name="CONSOMATION">
+          <Key>
+            <PropertyRef Name="ID_CONSOMATION" />
+          </Key>
+          <Property Name="ID_CONSOMATION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUIT_CONSOME" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QUANTITE_CONSOME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DAT_CONSOMATION" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_STOCK" Type="Int32" />
+          <NavigationProperty Name="STOCK" Relationship="Self.FK__CONSOMATI__ID_ST__251C81ED" FromRole="CONSOMATION" ToRole="STOCK" />
+        </EntityType>
+        <EntityType Name="CONSULTATION">
+          <Key>
+            <PropertyRef Name="ID_CONSULTATION" />
+          </Key>
+          <Property Name="ID_CONSULTATION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_CONS" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PRIX_CONS" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TOTAL_CONS" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ID_PATIENT" Type="Int32" />
+          <Property Name="ID_MEDECIN" Type="Int32" />
+          <Property Name="ID_CLINIQUE" Type="Int32" />
+          <Property Name="ID_EXAMEN" Type="Int32" />
+          <Property Name="ID_PAIEMENT" Type="Int32" />
+          <NavigationProperty Name="AUTORISATIONs" Relationship="Self.FK__AUTORISAT__ID_CO__662B2B3B" FromRole="CONSULTATION" ToRole="AUTORISATION" />
+          <NavigationProperty Name="CAPTURATION_IMAGE" Relationship="Self.FK__CAPTURATI__ID_CO__40058253" FromRole="CONSULTATION" ToRole="CAPTURATION_IMAGE" />
+          <NavigationProperty Name="CLINIQUE" Relationship="Self.FK__CONSULTAT__ID_CL__3A4CA8FD" FromRole="CONSULTATION" ToRole="CLINIQUE" />
+          <NavigationProperty Name="EXAMan" Relationship="Self.FK__CONSULTAT__ID_EX__3B40CD36" FromRole="CONSULTATION" ToRole="EXAMEN" />
+          <NavigationProperty Name="MEDECIN" Relationship="Self.FK__CONSULTAT__ID_ME__395884C4" FromRole="CONSULTATION" ToRole="MEDECIN" />
+          <NavigationProperty Name="PATIENT" Relationship="Self.FK__CONSULTAT__ID_PA__3864608B" FromRole="CONSULTATION" ToRole="PATIENT" />
+          <NavigationProperty Name="PAIEMENT" Relationship="Self.FK__CONSULTAT__ID_PA__7A3223E8" FromRole="CONSULTATION" ToRole="PAIEMENT" />
+          <NavigationProperty Name="PRESCRIREs" Relationship="Self.FK__PRESCRIRE__ID_CO__4D5F7D71" FromRole="CONSULTATION" ToRole="PRESCRIRE" />
+          <NavigationProperty Name="RESULTAT_PATIENT" Relationship="Self.FK__RESULTAT___ID_CO__45BE5BA9" FromRole="CONSULTATION" ToRole="RESULTAT_PATIENT" />
+        </EntityType>
+        <EntityType Name="DEPARTEMENT">
+          <Key>
+            <PropertyRef Name="ID_DEPARTEMENT" />
+          </Key>
+          <Property Name="ID_DEPARTEMENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_DEPARTEMENT" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SERVICEEs" Relationship="Self.FK__SERVICEE__ID_DEP__7C4F7684" FromRole="DEPARTEMENT" ToRole="SERVICEE" />
+        </EntityType>
+        <EntityType Name="DEPENSE_CLINIQUE">
+          <Key>
+            <PropertyRef Name="ID_DEPENSE" />
+          </Key>
+          <Property Name="ID_DEPENSE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MONTANT_RETIRE" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="JUSTIFICATION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATE_DEPENSE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_CAISSE" Type="Int32" />
+          <Property Name="ID_MEDECIN" Type="Int32" />
+          <NavigationProperty Name="CAISSE" Relationship="Self.FK__DEPENSE_C__ID_CA__1F63A897" FromRole="DEPENSE_CLINIQUE" ToRole="CAISSE" />
+          <NavigationProperty Name="MEDECIN" Relationship="Self.FK__DEPENSE_C__ID_ME__2057CCD0" FromRole="DEPENSE_CLINIQUE" ToRole="MEDECIN" />
+        </EntityType>
+        <EntityType Name="EMPLOYE">
+          <Key>
+            <PropertyRef Name="ID_EMPLOYE" />
+          </Key>
+          <Property Name="ID_EMPLOYE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_EMPLOYE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENOM_EMPLOYE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATEN_E" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SEXE_EMPLOYE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEL1_EMPLOYE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEL2_EMPLOYE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_EMPLOYE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SITUATION_FAMILIALE_E" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GROUPAGE_E" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIVEAU_ETUDE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADRESSE_EMPLOYE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SALAIRE_E" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="NUM_CCP_E" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUM_ASSUR_E" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STATUT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROTATION" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="Int32" />
+          <NavigationProperty Name="SERVICEE" Relationship="Self.FK__EMPLOYE__ID_SERV__690797E6" FromRole="EMPLOYE" ToRole="SERVICEE" />
+          <NavigationProperty Name="FACTUREs" Relationship="Self.FK__FACTURE__ID_EMPL__2BC97F7C" FromRole="EMPLOYE" ToRole="FACTURE" />
+          <NavigationProperty Name="RDVs" Relationship="Self.FK__RDV__ID_EMPLOYE__719CDDE7" FromRole="EMPLOYE" ToRole="RDV" />
+          <NavigationProperty Name="UTILISATEURs" Relationship="Self.FK__UTILISATE__ID_EM__73852659" FromRole="EMPLOYE" ToRole="UTILISATEUR" />
+        </EntityType>
+        <EntityType Name="EQUIPEMENT">
+          <Key>
+            <PropertyRef Name="ID_EQUIPEMENT" />
+          </Key>
+          <Property Name="ID_EQUIPEMENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_EQUIPEMENT" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MARQUE_EQUIPEMENT" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="Int32" />
+          <NavigationProperty Name="CAPTURATION_IMAGE" Relationship="Self.FK__CAPTURATI__ID_EQ__40F9A68C" FromRole="EQUIPEMENT" ToRole="CAPTURATION_IMAGE" />
+          <NavigationProperty Name="SERVICEE" Relationship="Self.FK__EQUIPEMEN__ID_SE__74794A92" FromRole="EQUIPEMENT" ToRole="SERVICEE" />
+        </EntityType>
+        <EntityType Name="EXAMan">
+          <Key>
+            <PropertyRef Name="ID_EXAMEN" />
+          </Key>
+          <Property Name="ID_EXAMEN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_EXAM" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OBSERVATION_EXAM" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PRIX_EXAM" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="CONSULTATIONs" Relationship="Self.FK__CONSULTAT__ID_EX__3B40CD36" FromRole="EXAMEN" ToRole="CONSULTATION" />
+          <NavigationProperty Name="RESULTAT_PATIENT" Relationship="Self.FK__RESULTAT___ID_EX__46B27FE2" FromRole="EXAMEN" ToRole="RESULTAT_PATIENT" />
+        </EntityType>
+        <EntityType Name="FACTURE">
+          <Key>
+            <PropertyRef Name="ID_FACTURE" />
+          </Key>
+          <Property Name="ID_FACTURE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_OPERATION" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="INTITULE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VERSEMENT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RESTE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TOTAL" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ANCIEN_CREDIT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="VALIDE_FACTURE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_FOURNISSEUR" Type="Int32" />
+          <Property Name="ID_EMPLOYE" Type="Int32" />
+          <NavigationProperty Name="EMPLOYE" Relationship="Self.FK__FACTURE__ID_EMPL__2BC97F7C" FromRole="FACTURE" ToRole="EMPLOYE" />
+          <NavigationProperty Name="FOURNISSEUR" Relationship="Self.FK__FACTURE__ID_FOUR__2AD55B43" FromRole="FACTURE" ToRole="FOURNISSEUR" />
+        </EntityType>
+        <EntityType Name="FOURNISSEUR">
+          <Key>
+            <PropertyRef Name="ID_FOURNISSEUR" />
+          </Key>
+          <Property Name="ID_FOURNISSEUR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_FOURNISSEUR" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEL1_FOURNISSEUR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TEL2_FOURNISSEUR" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="ADRESSE_FOURNISSEUR" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_FOURNISSEUR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PROFFESSION_FOURNISSEUR" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREDIT_FOURNISSEUR" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="ACHATs" Relationship="Self.FK__ACHAT__ID_FOURNI__0D44F85C" FromRole="FOURNISSEUR" ToRole="ACHAT" />
+          <NavigationProperty Name="FACTUREs" Relationship="Self.FK__FACTURE__ID_FOUR__2AD55B43" FromRole="FOURNISSEUR" ToRole="FACTURE" />
+          <NavigationProperty Name="LIVRAISONs" Relationship="Self.FK__LIVRAISON__ID_FO__04AFB25B" FromRole="FOURNISSEUR" ToRole="LIVRAISON" />
+        </EntityType>
+        <EntityType Name="LIVRAISON">
+          <Key>
+            <PropertyRef Name="ID_LIVRAISON" />
+          </Key>
+          <Property Name="ID_LIVRAISON" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_LIVRAISON" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PRIX_LIVRAISON" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ID_FOURNISSEUR" Type="Int32" />
+          <Property Name="ID_PRODUIT" Type="Int32" />
+          <NavigationProperty Name="ACHATs" Relationship="Self.FK__ACHAT__ID_LIVRAI__0F2D40CE" FromRole="LIVRAISON" ToRole="ACHAT" />
+          <NavigationProperty Name="FOURNISSEUR" Relationship="Self.FK__LIVRAISON__ID_FO__04AFB25B" FromRole="LIVRAISON" ToRole="FOURNISSEUR" />
+          <NavigationProperty Name="PRODUIT" Relationship="Self.FK__LIVRAISON__ID_PR__10216507" FromRole="LIVRAISON" ToRole="PRODUIT" />
+        </EntityType>
+        <EntityType Name="MALADIE">
+          <Key>
+            <PropertyRef Name="ID_MALADIE" />
+          </Key>
+          <Property Name="ID_MALADIE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FAMILLE_MALADIE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESIGNATION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MEDECIN">
+          <Key>
+            <PropertyRef Name="ID_MEDECIN" />
+          </Key>
+          <Property Name="ID_MEDECIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_MEDECIN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENOM_MEDECIN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATEN_M" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SEXE_MEDECIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEL1_MEDECIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEL2_MEDECIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_MEDECIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SITUATION_FAMILIALE_M" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GROUPAGE_M" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPECIALITE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADRESSE_MEDECIN" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SALAIRE_M" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="NUM_CCP_M" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUM_ASSUR_M" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="Int32" />
+          <NavigationProperty Name="CONSULTATIONs" Relationship="Self.FK__CONSULTAT__ID_ME__395884C4" FromRole="MEDECIN" ToRole="CONSULTATION" />
+          <NavigationProperty Name="DEPENSE_CLINIQUE" Relationship="Self.FK__DEPENSE_C__ID_ME__2057CCD0" FromRole="MEDECIN" ToRole="DEPENSE_CLINIQUE" />
+          <NavigationProperty Name="SERVICEE" Relationship="Self.FK__MEDECIN__ID_SERV__756D6ECB" FromRole="MEDECIN" ToRole="SERVICEE" />
+          <NavigationProperty Name="RDVs" Relationship="Self.FK__RDV__ID_MEDECIN__6FB49575" FromRole="MEDECIN" ToRole="RDV" />
+          <NavigationProperty Name="UTILISATEURs" Relationship="Self.FK__UTILISATE__ID_ME__72910220" FromRole="MEDECIN" ToRole="UTILISATEUR" />
+        </EntityType>
+        <EntityType Name="MEDICAMENT">
+          <Key>
+            <PropertyRef Name="ID_MEDICAMENT" />
+          </Key>
+          <Property Name="ID_MEDICAMENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DCI" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MARQUE_MEDICAMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOSAGE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRESCRIREs" Relationship="Self.FK__PRESCRIRE__ID_ME__4E53A1AA" FromRole="MEDICAMENT" ToRole="PRESCRIRE" />
+        </EntityType>
+        <EntityType Name="PAIEMENT">
+          <Key>
+            <PropertyRef Name="ID_PAIEMENT" />
+          </Key>
+          <Property Name="ID_PAIEMENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MODE_PAIEMENT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATE_PAIEMENT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VERSEMENT_PAIEMENT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RESTE_PAIEMENT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TOTAL_PAIEMENT" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CAISSEs" Relationship="Self.FK__CAISSE__ID_PAIEM__19AACF41" FromRole="PAIEMENT" ToRole="CAISSE" />
+          <NavigationProperty Name="CONSULTATIONs" Relationship="Self.FK__CONSULTAT__ID_PA__7A3223E8" FromRole="PAIEMENT" ToRole="CONSULTATION" />
+        </EntityType>
+        <EntityType Name="PATIENT">
+          <Key>
+            <PropertyRef Name="ID_PATIENT" />
+          </Key>
+          <Property Name="ID_PATIENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_PATIENT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENOM_PATIENT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATEN_P" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SEXE_PATIENT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEL1_PATIENT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEL2_PATIENT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_PATIENT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SITUATION_FAMILIALE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GROUPAGE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROFFESION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADRESSE_PATIENT" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUM_ASSUR_P" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CONSULTATIONs" Relationship="Self.FK__CONSULTAT__ID_PA__3864608B" FromRole="PATIENT" ToRole="CONSULTATION" />
+          <NavigationProperty Name="HOSPITALISATIONs" Relationship="Self.FK__HOSPITALI__ID_PA__2DE6D218" FromRole="PATIENT" ToRole="HOSPITALISATION" />
+          <NavigationProperty Name="RDVs" Relationship="Self.FK__RDV__ID_PATIENT__70A8B9AE" FromRole="PATIENT" ToRole="RDV" />
+        </EntityType>
+        <EntityType Name="PRODUIT">
+          <Key>
+            <PropertyRef Name="ID_PRODUIT" />
+          </Key>
+          <Property Name="ID_PRODUIT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_PRODUIT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRIX_PRODUIT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DATE_EXP" Type="DateTime" Precision="0" />
+          <Property Name="CODE_BAR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ACHATs" Relationship="Self.FK__ACHAT__ID_PRODUI__0E391C95" FromRole="PRODUIT" ToRole="ACHAT" />
+          <NavigationProperty Name="LIVRAISONs" Relationship="Self.FK__LIVRAISON__ID_PR__10216507" FromRole="PRODUIT" ToRole="LIVRAISON" />
+          <NavigationProperty Name="STOCKs" Relationship="Self.FK__STOCK__ID_PRODUI__14E61A24" FromRole="PRODUIT" ToRole="STOCK" />
+        </EntityType>
+        <EntityType Name="RDV">
+          <Key>
+            <PropertyRef Name="ID_RDV" />
+          </Key>
+          <Property Name="ID_RDV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_RDV" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DATE_CREATION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RAISON" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ID_MEDECIN" Type="Int32" />
+          <Property Name="ID_PATIENT" Type="Int32" />
+          <Property Name="ID_EMPLOYE" Type="Int32" />
+          <NavigationProperty Name="EMPLOYE" Relationship="Self.FK__RDV__ID_EMPLOYE__719CDDE7" FromRole="RDV" ToRole="EMPLOYE" />
+          <NavigationProperty Name="MEDECIN" Relationship="Self.FK__RDV__ID_MEDECIN__6FB49575" FromRole="RDV" ToRole="MEDECIN" />
+          <NavigationProperty Name="PATIENT" Relationship="Self.FK__RDV__ID_PATIENT__70A8B9AE" FromRole="RDV" ToRole="PATIENT" />
+        </EntityType>
+        <EntityType Name="RESULTAT_PATIENT">
+          <Key>
+            <PropertyRef Name="ID_RESULTAT_PATIENT" />
+          </Key>
+          <Property Name="ID_RESULTAT_PATIENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_RESULTAT_PATIENT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="COMPTE_RENDU_RESULTATP" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OBSERVATION_RESULTAT_PATIENT" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ID_CONSULTATION" Type="Int32" />
+          <Property Name="ID_EXAMEN" Type="Int32" />
+          <Property Name="ID_CAPTURATION_IMAGE" Type="Int32" />
+          <Property Name="ID_CLINIQUE" Type="Int32" />
+          <NavigationProperty Name="CAPTURATION_IMAGE" Relationship="Self.FK__RESULTAT___ID_CA__47A6A41B" FromRole="RESULTAT_PATIENT" ToRole="CAPTURATION_IMAGE" />
+          <NavigationProperty Name="CLINIQUE" Relationship="Self.FK__RESULTAT___ID_CL__489AC854" FromRole="RESULTAT_PATIENT" ToRole="CLINIQUE" />
+          <NavigationProperty Name="CONSULTATION" Relationship="Self.FK__RESULTAT___ID_CO__45BE5BA9" FromRole="RESULTAT_PATIENT" ToRole="CONSULTATION" />
+          <NavigationProperty Name="EXAMan" Relationship="Self.FK__RESULTAT___ID_EX__46B27FE2" FromRole="RESULTAT_PATIENT" ToRole="EXAMEN" />
+        </EntityType>
+        <EntityType Name="SERVICEE">
+          <Key>
+            <PropertyRef Name="ID_SERVICE" />
+          </Key>
+          <Property Name="ID_SERVICE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_SERVICE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_DEPARTEMENT" Type="Int32" />
+          <NavigationProperty Name="AUTORISATIONs" Relationship="Self.FK__AUTORISAT__ID_SE__671F4F74" FromRole="SERVICEE" ToRole="AUTORISATION" />
+          <NavigationProperty Name="CHAMBREs" Relationship="Self.FK__CHAMBRE__ID_SERV__1F98B2C1" FromRole="SERVICEE" ToRole="CHAMBRE" />
+          <NavigationProperty Name="DEPARTEMENT" Relationship="Self.FK__SERVICEE__ID_DEP__7C4F7684" FromRole="SERVICEE" ToRole="DEPARTEMENT" />
+          <NavigationProperty Name="EMPLOYEs" Relationship="Self.FK__EMPLOYE__ID_SERV__690797E6" FromRole="SERVICEE" ToRole="EMPLOYE" />
+          <NavigationProperty Name="EQUIPEMENTs" Relationship="Self.FK__EQUIPEMEN__ID_SE__74794A92" FromRole="SERVICEE" ToRole="EQUIPEMENT" />
+          <NavigationProperty Name="MEDECINs" Relationship="Self.FK__MEDECIN__ID_SERV__756D6ECB" FromRole="SERVICEE" ToRole="MEDECIN" />
+          <NavigationProperty Name="HOSPITALISATIONs" Relationship="Self.FK__HOSPITALI__ID_SE__2EDAF651" FromRole="SERVICEE" ToRole="HOSPITALISATION" />
+        </EntityType>
+        <EntityType Name="STOCK">
+          <Key>
+            <PropertyRef Name="ID_STOCK" />
+          </Key>
+          <Property Name="ID_STOCK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_STOCK" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="QUANTITE_ENTRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QUANTITE_SORTIE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QUANTITE_REEL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_PRODUIT" Type="Int32" />
+          <NavigationProperty Name="CONSOMATIONs" Relationship="Self.FK__CONSOMATI__ID_ST__251C81ED" FromRole="STOCK" ToRole="CONSOMATION" />
+          <NavigationProperty Name="PRODUIT" Relationship="Self.FK__STOCK__ID_PRODUI__14E61A24" FromRole="STOCK" ToRole="PRODUIT" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UTILISATEUR">
+          <Key>
+            <PropertyRef Name="ID_UTILISATEUR" />
+          </Key>
+          <Property Name="ID_UTILISATEUR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_UTILISATEUR" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MTPS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_MEDECIN" Type="Int32" />
+          <Property Name="ID_EMPLOYE" Type="Int32" />
+          <NavigationProperty Name="EMPLOYE" Relationship="Self.FK__UTILISATE__ID_EM__73852659" FromRole="UTILISATEUR" ToRole="EMPLOYE" />
+          <NavigationProperty Name="MEDECIN" Relationship="Self.FK__UTILISATE__ID_ME__72910220" FromRole="UTILISATEUR" ToRole="MEDECIN" />
+        </EntityType>
+        <EntityType Name="HOSPITALISATION">
+          <Key>
+            <PropertyRef Name="lit" />
+            <PropertyRef Name="date_host" />
+          </Key>
+          <Property Name="ID_PATIENT" Type="Int32" />
+          <Property Name="ID_SERVICE" Type="Int32" />
+          <Property Name="ID_CHAMBRE" Type="Int32" />
+          <Property Name="lit" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_host" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_AUTORISATION" Type="Int32" />
+          <NavigationProperty Name="AUTORISATION" Relationship="Self.FK__HOSPITALI__ID_AU__681373AD" FromRole="HOSPITALISATION" ToRole="AUTORISATION" />
+          <NavigationProperty Name="CHAMBRE" Relationship="Self.FK__HOSPITALI__ID_CH__2FCF1A8A" FromRole="HOSPITALISATION" ToRole="CHAMBRE" />
+          <NavigationProperty Name="PATIENT" Relationship="Self.FK__HOSPITALI__ID_PA__2DE6D218" FromRole="HOSPITALISATION" ToRole="PATIENT" />
+          <NavigationProperty Name="SERVICEE" Relationship="Self.FK__HOSPITALI__ID_SE__2EDAF651" FromRole="HOSPITALISATION" ToRole="SERVICEE" />
+        </EntityType>
+        <EntityType Name="PRESCRIRE">
+          <Key>
+            <PropertyRef Name="POSOLOGIE" />
+          </Key>
+          <Property Name="ID_CONSULTATION" Type="Int32" />
+          <Property Name="ID_MEDICAMENT" Type="Int32" />
+          <Property Name="POSOLOGIE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DUREE_TRAITEMENT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CONSULTATION" Relationship="Self.FK__PRESCRIRE__ID_CO__4D5F7D71" FromRole="PRESCRIRE" ToRole="CONSULTATION" />
+          <NavigationProperty Name="MEDICAMENT" Relationship="Self.FK__PRESCRIRE__ID_ME__4E53A1AA" FromRole="PRESCRIRE" ToRole="MEDICAMENT" />
+        </EntityType>
+        <Association Name="FK__ACHAT__ID_CAISSE__1A9EF37A">
+          <End Role="CAISSE" Type="Self.CAISSE" Multiplicity="0..1" />
+          <End Role="ACHAT" Type="Self.ACHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAISSE">
+              <PropertyRef Name="ID_CAISSE" />
+            </Principal>
+            <Dependent Role="ACHAT">
+              <PropertyRef Name="ID_CAISSE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ACHAT__ID_FOURNI__0D44F85C">
+          <End Role="FOURNISSEUR" Type="Self.FOURNISSEUR" Multiplicity="0..1" />
+          <End Role="ACHAT" Type="Self.ACHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Principal>
+            <Dependent Role="ACHAT">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ACHAT__ID_LIVRAI__0F2D40CE">
+          <End Role="LIVRAISON" Type="Self.LIVRAISON" Multiplicity="0..1" />
+          <End Role="ACHAT" Type="Self.ACHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIVRAISON">
+              <PropertyRef Name="ID_LIVRAISON" />
+            </Principal>
+            <Dependent Role="ACHAT">
+              <PropertyRef Name="ID_LIVRAISON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ACHAT__ID_PRODUI__0E391C95">
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="0..1" />
+          <End Role="ACHAT" Type="Self.ACHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Principal>
+            <Dependent Role="ACHAT">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AUTORISAT__ID_CO__662B2B3B">
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="0..1" />
+          <End Role="AUTORISATION" Type="Self.AUTORISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSULTATION">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Principal>
+            <Dependent Role="AUTORISATION">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AUTORISAT__ID_SE__671F4F74">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="AUTORISATION" Type="Self.AUTORISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="AUTORISATION">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOSPITALI__ID_AU__681373AD">
+          <End Role="AUTORISATION" Type="Self.AUTORISATION" Multiplicity="0..1" />
+          <End Role="HOSPITALISATION" Type="Self.HOSPITALISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AUTORISATION">
+              <PropertyRef Name="ID_AUTORISATION" />
+            </Principal>
+            <Dependent Role="HOSPITALISATION">
+              <PropertyRef Name="ID_AUTORISATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CAISSE__ID_PAIEM__19AACF41">
+          <End Role="PAIEMENT" Type="Self.PAIEMENT" Multiplicity="0..1" />
+          <End Role="CAISSE" Type="Self.CAISSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAIEMENT">
+              <PropertyRef Name="ID_PAIEMENT" />
+            </Principal>
+            <Dependent Role="CAISSE">
+              <PropertyRef Name="ID_PAIEMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DEPENSE_C__ID_CA__1F63A897">
+          <End Role="CAISSE" Type="Self.CAISSE" Multiplicity="0..1" />
+          <End Role="DEPENSE_CLINIQUE" Type="Self.DEPENSE_CLINIQUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAISSE">
+              <PropertyRef Name="ID_CAISSE" />
+            </Principal>
+            <Dependent Role="DEPENSE_CLINIQUE">
+              <PropertyRef Name="ID_CAISSE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CAPTURATI__ID_CO__40058253">
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="0..1" />
+          <End Role="CAPTURATION_IMAGE" Type="Self.CAPTURATION_IMAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSULTATION">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Principal>
+            <Dependent Role="CAPTURATION_IMAGE">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CAPTURATI__ID_EQ__40F9A68C">
+          <End Role="EQUIPEMENT" Type="Self.EQUIPEMENT" Multiplicity="0..1" />
+          <End Role="CAPTURATION_IMAGE" Type="Self.CAPTURATION_IMAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPEMENT">
+              <PropertyRef Name="ID_EQUIPEMENT" />
+            </Principal>
+            <Dependent Role="CAPTURATION_IMAGE">
+              <PropertyRef Name="ID_EQUIPEMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RESULTAT___ID_CA__47A6A41B">
+          <End Role="CAPTURATION_IMAGE" Type="Self.CAPTURATION_IMAGE" Multiplicity="0..1" />
+          <End Role="RESULTAT_PATIENT" Type="Self.RESULTAT_PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAPTURATION_IMAGE">
+              <PropertyRef Name="ID_CAPTURATION_IMAGE" />
+            </Principal>
+            <Dependent Role="RESULTAT_PATIENT">
+              <PropertyRef Name="ID_CAPTURATION_IMAGE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CHAMBRE__ID_SERV__1F98B2C1">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="CHAMBRE" Type="Self.CHAMBRE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="CHAMBRE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOSPITALI__ID_CH__2FCF1A8A">
+          <End Role="CHAMBRE" Type="Self.CHAMBRE" Multiplicity="0..1" />
+          <End Role="HOSPITALISATION" Type="Self.HOSPITALISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHAMBRE">
+              <PropertyRef Name="ID_CHAMBRE" />
+            </Principal>
+            <Dependent Role="HOSPITALISATION">
+              <PropertyRef Name="ID_CHAMBRE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSULTAT__ID_CL__3A4CA8FD">
+          <End Role="CLINIQUE" Type="Self.CLINIQUE" Multiplicity="0..1" />
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIQUE">
+              <PropertyRef Name="ID_CLINIQUE" />
+            </Principal>
+            <Dependent Role="CONSULTATION">
+              <PropertyRef Name="ID_CLINIQUE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RESULTAT___ID_CL__489AC854">
+          <End Role="CLINIQUE" Type="Self.CLINIQUE" Multiplicity="0..1" />
+          <End Role="RESULTAT_PATIENT" Type="Self.RESULTAT_PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIQUE">
+              <PropertyRef Name="ID_CLINIQUE" />
+            </Principal>
+            <Dependent Role="RESULTAT_PATIENT">
+              <PropertyRef Name="ID_CLINIQUE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSOMATI__ID_ST__251C81ED">
+          <End Role="STOCK" Type="Self.STOCK" Multiplicity="0..1" />
+          <End Role="CONSOMATION" Type="Self.CONSOMATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STOCK">
+              <PropertyRef Name="ID_STOCK" />
+            </Principal>
+            <Dependent Role="CONSOMATION">
+              <PropertyRef Name="ID_STOCK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSULTAT__ID_EX__3B40CD36">
+          <End Role="EXAMEN" Type="Self.EXAMan" Multiplicity="0..1" />
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXAMEN">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Principal>
+            <Dependent Role="CONSULTATION">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSULTAT__ID_ME__395884C4">
+          <End Role="MEDECIN" Type="Self.MEDECIN" Multiplicity="0..1" />
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDECIN">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Principal>
+            <Dependent Role="CONSULTATION">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSULTAT__ID_PA__3864608B">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="0..1" />
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="ID_PATIENT" />
+            </Principal>
+            <Dependent Role="CONSULTATION">
+              <PropertyRef Name="ID_PATIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONSULTAT__ID_PA__7A3223E8">
+          <End Role="PAIEMENT" Type="Self.PAIEMENT" Multiplicity="0..1" />
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAIEMENT">
+              <PropertyRef Name="ID_PAIEMENT" />
+            </Principal>
+            <Dependent Role="CONSULTATION">
+              <PropertyRef Name="ID_PAIEMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRESCRIRE__ID_CO__4D5F7D71">
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="0..1" />
+          <End Role="PRESCRIRE" Type="Self.PRESCRIRE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSULTATION">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Principal>
+            <Dependent Role="PRESCRIRE">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RESULTAT___ID_CO__45BE5BA9">
+          <End Role="CONSULTATION" Type="Self.CONSULTATION" Multiplicity="0..1" />
+          <End Role="RESULTAT_PATIENT" Type="Self.RESULTAT_PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSULTATION">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Principal>
+            <Dependent Role="RESULTAT_PATIENT">
+              <PropertyRef Name="ID_CONSULTATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SERVICEE__ID_DEP__7C4F7684">
+          <End Role="DEPARTEMENT" Type="Self.DEPARTEMENT" Multiplicity="0..1" />
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTEMENT">
+              <PropertyRef Name="ID_DEPARTEMENT" />
+            </Principal>
+            <Dependent Role="SERVICEE">
+              <PropertyRef Name="ID_DEPARTEMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DEPENSE_C__ID_ME__2057CCD0">
+          <End Role="MEDECIN" Type="Self.MEDECIN" Multiplicity="0..1" />
+          <End Role="DEPENSE_CLINIQUE" Type="Self.DEPENSE_CLINIQUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDECIN">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Principal>
+            <Dependent Role="DEPENSE_CLINIQUE">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EMPLOYE__ID_SERV__690797E6">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="EMPLOYE" Type="Self.EMPLOYE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="EMPLOYE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FACTURE__ID_EMPL__2BC97F7C">
+          <End Role="EMPLOYE" Type="Self.EMPLOYE" Multiplicity="0..1" />
+          <End Role="FACTURE" Type="Self.FACTURE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYE">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Principal>
+            <Dependent Role="FACTURE">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RDV__ID_EMPLOYE__719CDDE7">
+          <End Role="EMPLOYE" Type="Self.EMPLOYE" Multiplicity="0..1" />
+          <End Role="RDV" Type="Self.RDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYE">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Principal>
+            <Dependent Role="RDV">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UTILISATE__ID_EM__73852659">
+          <End Role="EMPLOYE" Type="Self.EMPLOYE" Multiplicity="0..1" />
+          <End Role="UTILISATEUR" Type="Self.UTILISATEUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYE">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Principal>
+            <Dependent Role="UTILISATEUR">
+              <PropertyRef Name="ID_EMPLOYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EQUIPEMEN__ID_SE__74794A92">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="EQUIPEMENT" Type="Self.EQUIPEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="EQUIPEMENT">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RESULTAT___ID_EX__46B27FE2">
+          <End Role="EXAMEN" Type="Self.EXAMan" Multiplicity="0..1" />
+          <End Role="RESULTAT_PATIENT" Type="Self.RESULTAT_PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXAMEN">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Principal>
+            <Dependent Role="RESULTAT_PATIENT">
+              <PropertyRef Name="ID_EXAMEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FACTURE__ID_FOUR__2AD55B43">
+          <End Role="FOURNISSEUR" Type="Self.FOURNISSEUR" Multiplicity="0..1" />
+          <End Role="FACTURE" Type="Self.FACTURE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Principal>
+            <Dependent Role="FACTURE">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIVRAISON__ID_FO__04AFB25B">
+          <End Role="FOURNISSEUR" Type="Self.FOURNISSEUR" Multiplicity="0..1" />
+          <End Role="LIVRAISON" Type="Self.LIVRAISON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Principal>
+            <Dependent Role="LIVRAISON">
+              <PropertyRef Name="ID_FOURNISSEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIVRAISON__ID_PR__10216507">
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="0..1" />
+          <End Role="LIVRAISON" Type="Self.LIVRAISON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Principal>
+            <Dependent Role="LIVRAISON">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MEDECIN__ID_SERV__756D6ECB">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="MEDECIN" Type="Self.MEDECIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="MEDECIN">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RDV__ID_MEDECIN__6FB49575">
+          <End Role="MEDECIN" Type="Self.MEDECIN" Multiplicity="0..1" />
+          <End Role="RDV" Type="Self.RDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDECIN">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Principal>
+            <Dependent Role="RDV">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UTILISATE__ID_ME__72910220">
+          <End Role="MEDECIN" Type="Self.MEDECIN" Multiplicity="0..1" />
+          <End Role="UTILISATEUR" Type="Self.UTILISATEUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDECIN">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Principal>
+            <Dependent Role="UTILISATEUR">
+              <PropertyRef Name="ID_MEDECIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRESCRIRE__ID_ME__4E53A1AA">
+          <End Role="MEDICAMENT" Type="Self.MEDICAMENT" Multiplicity="0..1" />
+          <End Role="PRESCRIRE" Type="Self.PRESCRIRE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICAMENT">
+              <PropertyRef Name="ID_MEDICAMENT" />
+            </Principal>
+            <Dependent Role="PRESCRIRE">
+              <PropertyRef Name="ID_MEDICAMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOSPITALI__ID_PA__2DE6D218">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="0..1" />
+          <End Role="HOSPITALISATION" Type="Self.HOSPITALISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="ID_PATIENT" />
+            </Principal>
+            <Dependent Role="HOSPITALISATION">
+              <PropertyRef Name="ID_PATIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RDV__ID_PATIENT__70A8B9AE">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="0..1" />
+          <End Role="RDV" Type="Self.RDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="ID_PATIENT" />
+            </Principal>
+            <Dependent Role="RDV">
+              <PropertyRef Name="ID_PATIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__STOCK__ID_PRODUI__14E61A24">
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="0..1" />
+          <End Role="STOCK" Type="Self.STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Principal>
+            <Dependent Role="STOCK">
+              <PropertyRef Name="ID_PRODUIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOSPITALI__ID_SE__2EDAF651">
+          <End Role="SERVICEE" Type="Self.SERVICEE" Multiplicity="0..1" />
+          <End Role="HOSPITALISATION" Type="Self.HOSPITALISATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICEE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="HOSPITALISATION">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cliniqueEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACHATs" EntityType="Self.ACHAT" />
+          <EntitySet Name="ANTECEDANTs" EntityType="Self.ANTECEDANT" />
+          <EntitySet Name="AUTORISATIONs" EntityType="Self.AUTORISATION" />
+          <EntitySet Name="CAISSEs" EntityType="Self.CAISSE" />
+          <EntitySet Name="CAPTURATION_IMAGE" EntityType="Self.CAPTURATION_IMAGE" />
+          <EntitySet Name="CHAMBREs" EntityType="Self.CHAMBRE" />
+          <EntitySet Name="CLINIQUEs" EntityType="Self.CLINIQUE" />
+          <EntitySet Name="CONSOMATIONs" EntityType="Self.CONSOMATION" />
+          <EntitySet Name="CONSULTATIONs" EntityType="Self.CONSULTATION" />
+          <EntitySet Name="DEPARTEMENTs" EntityType="Self.DEPARTEMENT" />
+          <EntitySet Name="DEPENSE_CLINIQUE" EntityType="Self.DEPENSE_CLINIQUE" />
+          <EntitySet Name="EMPLOYEs" EntityType="Self.EMPLOYE" />
+          <EntitySet Name="EQUIPEMENTs" EntityType="Self.EQUIPEMENT" />
+          <EntitySet Name="EXAMEN" EntityType="Self.EXAMan" />
+          <EntitySet Name="FACTUREs" EntityType="Self.FACTURE" />
+          <EntitySet Name="FOURNISSEURs" EntityType="Self.FOURNISSEUR" />
+          <EntitySet Name="LIVRAISONs" EntityType="Self.LIVRAISON" />
+          <EntitySet Name="MALADIEs" EntityType="Self.MALADIE" />
+          <EntitySet Name="MEDECINs" EntityType="Self.MEDECIN" />
+          <EntitySet Name="MEDICAMENTs" EntityType="Self.MEDICAMENT" />
+          <EntitySet Name="PAIEMENTs" EntityType="Self.PAIEMENT" />
+          <EntitySet Name="PATIENTs" EntityType="Self.PATIENT" />
+          <EntitySet Name="PRODUITs" EntityType="Self.PRODUIT" />
+          <EntitySet Name="RDVs" EntityType="Self.RDV" />
+          <EntitySet Name="RESULTAT_PATIENT" EntityType="Self.RESULTAT_PATIENT" />
+          <EntitySet Name="SERVICEEs" EntityType="Self.SERVICEE" />
+          <EntitySet Name="STOCKs" EntityType="Self.STOCK" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="UTILISATEURs" EntityType="Self.UTILISATEUR" />
+          <EntitySet Name="HOSPITALISATIONs" EntityType="Self.HOSPITALISATION" />
+          <EntitySet Name="PRESCRIREs" EntityType="Self.PRESCRIRE" />
+          <AssociationSet Name="FK__ACHAT__ID_CAISSE__1A9EF37A" Association="Self.FK__ACHAT__ID_CAISSE__1A9EF37A">
+            <End Role="CAISSE" EntitySet="CAISSEs" />
+            <End Role="ACHAT" EntitySet="ACHATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ACHAT__ID_FOURNI__0D44F85C" Association="Self.FK__ACHAT__ID_FOURNI__0D44F85C">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEURs" />
+            <End Role="ACHAT" EntitySet="ACHATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ACHAT__ID_LIVRAI__0F2D40CE" Association="Self.FK__ACHAT__ID_LIVRAI__0F2D40CE">
+            <End Role="LIVRAISON" EntitySet="LIVRAISONs" />
+            <End Role="ACHAT" EntitySet="ACHATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ACHAT__ID_PRODUI__0E391C95" Association="Self.FK__ACHAT__ID_PRODUI__0E391C95">
+            <End Role="PRODUIT" EntitySet="PRODUITs" />
+            <End Role="ACHAT" EntitySet="ACHATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AUTORISAT__ID_CO__662B2B3B" Association="Self.FK__AUTORISAT__ID_CO__662B2B3B">
+            <End Role="CONSULTATION" EntitySet="CONSULTATIONs" />
+            <End Role="AUTORISATION" EntitySet="AUTORISATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AUTORISAT__ID_SE__671F4F74" Association="Self.FK__AUTORISAT__ID_SE__671F4F74">
+            <End Role="SERVICEE" EntitySet="SERVICEEs" />
+            <End Role="AUTORISATION" EntitySet="AUTORISATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOSPITALI__ID_AU__681373AD" Association="Self.FK__HOSPITALI__ID_AU__681373AD">
+            <End Role="AUTORISATION" EntitySet="AUTORISATIONs" />
+            <End Role="HOSPITALISATION" EntitySet="HOSPITALISATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CAISSE__ID_PAIEM__19AACF41" Association="Self.FK__CAISSE__ID_PAIEM__19AACF41">
+            <End Role="PAIEMENT" EntitySet="PAIEMENTs" />
+            <End Role="CAISSE" EntitySet="CAISSEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DEPENSE_C__ID_CA__1F63A897" Association="Self.FK__DEPENSE_C__ID_CA__1F63A897">
+            <End Role="CAISSE" EntitySet="CAISSEs" />
+            <End Role="DEPENSE_CLINIQUE" EntitySet="DEPENSE_CLINIQUE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CAPTURATI__ID_CO__40058253" Association="Self.FK__CAPTURATI__ID_CO__40058253">
+            <End Role="CONSULTATION" EntitySet="CONSULTATIONs" />
+            <End Role="CAPTURATION_IMAGE" EntitySet="CAPTURATION_IMAGE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CAPTURATI__ID_EQ__40F9A68C" Association="Self.FK__CAPTURATI__ID_EQ__40F9A68C">
+            <End Role="EQUIPEMENT" EntitySet="EQUIPEMENTs" />
+            <End Role="CAPTURATION_IMAGE" EntitySet="CAPTURATION_IMAGE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RESULTAT___ID_CA__47A6A41B" Association="Self.FK__RESULTAT___ID_CA__47A6A41B">
+            <End Role="CAPTURATION_IMAGE" EntitySet="CAPTURATION_IMAGE" />
+            <End Role="RESULTAT_PATIENT" EntitySet="RESULTAT_PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHAMBRE__ID_SERV__1F98B2C1" Association="Self.FK__CHAMBRE__ID_SERV__1F98B2C1">
+            <End Role="SERVICEE" EntitySet="SERVICEEs" />
+            <End Role="CHAMBRE" EntitySet="CHAMBREs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOSPITALI__ID_CH__2FCF1A8A" Association="Self.FK__HOSPITALI__ID_CH__2FCF1A8A">
+            <End Role="CHAMBRE" EntitySet="CHAMBREs" />
+            <End Role="HOSPITALISATION" EntitySet="HOSPITALISATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSULTAT__ID_CL__3A4CA8FD" Association="Self.FK__CONSULTAT__ID_CL__3A4CA8FD">
+            <End Role="CLINIQUE" EntitySet="CLINIQUEs" />
+            <End Role="CONSULTATION" EntitySet="CONSULTATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RESULTAT___ID_CL__489AC854" Association="Self.FK__RESULTAT___ID_CL__489AC854">
+            <End Role="CLINIQUE" EntitySet="CLINIQUEs" />
+            <End Role="RESULTAT_PATIENT" EntitySet="RESULTAT_PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSOMATI__ID_ST__251C81ED" Association="Self.FK__CONSOMATI__ID_ST__251C81ED">
+            <End Role="STOCK" EntitySet="STOCKs" />
+            <End Role="CONSOMATION" EntitySet="CONSOMATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSULTAT__ID_EX__3B40CD36" Association="Self.FK__CONSULTAT__ID_EX__3B40CD36">
+            <End Role="EXAMEN" EntitySet="EXAMEN" />
+            <End Role="CONSULTATION" EntitySet="CONSULTATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSULTAT__ID_ME__395884C4" Association="Self.FK__CONSULTAT__ID_ME__395884C4">
+            <End Role="MEDECIN" EntitySet="MEDECINs" />
+            <End Role="CONSULTATION" EntitySet="CONSULTATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSULTAT__ID_PA__3864608B" Association="Self.FK__CONSULTAT__ID_PA__3864608B">
+            <End Role="PATIENT" EntitySet="PATIENTs" />
+            <End Role="CONSULTATION" EntitySet="CONSULTATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONSULTAT__ID_PA__7A3223E8" Association="Self.FK__CONSULTAT__ID_PA__7A3223E8">
+            <End Role="PAIEMENT" EntitySet="PAIEMENTs" />
+            <End Role="CONSULTATION" EntitySet="CONSULTATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRESCRIRE__ID_CO__4D5F7D71" Association="Self.FK__PRESCRIRE__ID_CO__4D5F7D71">
+            <End Role="CONSULTATION" EntitySet="CONSULTATIONs" />
+            <End Role="PRESCRIRE" EntitySet="PRESCRIREs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RESULTAT___ID_CO__45BE5BA9" Association="Self.FK__RESULTAT___ID_CO__45BE5BA9">
+            <End Role="CONSULTATION" EntitySet="CONSULTATIONs" />
+            <End Role="RESULTAT_PATIENT" EntitySet="RESULTAT_PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SERVICEE__ID_DEP__7C4F7684" Association="Self.FK__SERVICEE__ID_DEP__7C4F7684">
+            <End Role="DEPARTEMENT" EntitySet="DEPARTEMENTs" />
+            <End Role="SERVICEE" EntitySet="SERVICEEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DEPENSE_C__ID_ME__2057CCD0" Association="Self.FK__DEPENSE_C__ID_ME__2057CCD0">
+            <End Role="MEDECIN" EntitySet="MEDECINs" />
+            <End Role="DEPENSE_CLINIQUE" EntitySet="DEPENSE_CLINIQUE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EMPLOYE__ID_SERV__690797E6" Association="Self.FK__EMPLOYE__ID_SERV__690797E6">
+            <End Role="SERVICEE" EntitySet="SERVICEEs" />
+            <End Role="EMPLOYE" EntitySet="EMPLOYEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FACTURE__ID_EMPL__2BC97F7C" Association="Self.FK__FACTURE__ID_EMPL__2BC97F7C">
+            <End Role="EMPLOYE" EntitySet="EMPLOYEs" />
+            <End Role="FACTURE" EntitySet="FACTUREs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RDV__ID_EMPLOYE__719CDDE7" Association="Self.FK__RDV__ID_EMPLOYE__719CDDE7">
+            <End Role="EMPLOYE" EntitySet="EMPLOYEs" />
+            <End Role="RDV" EntitySet="RDVs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UTILISATE__ID_EM__73852659" Association="Self.FK__UTILISATE__ID_EM__73852659">
+            <End Role="EMPLOYE" EntitySet="EMPLOYEs" />
+            <End Role="UTILISATEUR" EntitySet="UTILISATEURs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EQUIPEMEN__ID_SE__74794A92" Association="Self.FK__EQUIPEMEN__ID_SE__74794A92">
+            <End Role="SERVICEE" EntitySet="SERVICEEs" />
+            <End Role="EQUIPEMENT" EntitySet="EQUIPEMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RESULTAT___ID_EX__46B27FE2" Association="Self.FK__RESULTAT___ID_EX__46B27FE2">
+            <End Role="EXAMEN" EntitySet="EXAMEN" />
+            <End Role="RESULTAT_PATIENT" EntitySet="RESULTAT_PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FACTURE__ID_FOUR__2AD55B43" Association="Self.FK__FACTURE__ID_FOUR__2AD55B43">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEURs" />
+            <End Role="FACTURE" EntitySet="FACTUREs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIVRAISON__ID_FO__04AFB25B" Association="Self.FK__LIVRAISON__ID_FO__04AFB25B">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEURs" />
+            <End Role="LIVRAISON" EntitySet="LIVRAISONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIVRAISON__ID_PR__10216507" Association="Self.FK__LIVRAISON__ID_PR__10216507">
+            <End Role="PRODUIT" EntitySet="PRODUITs" />
+            <End Role="LIVRAISON" EntitySet="LIVRAISONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MEDECIN__ID_SERV__756D6ECB" Association="Self.FK__MEDECIN__ID_SERV__756D6ECB">
+            <End Role="SERVICEE" EntitySet="SERVICEEs" />
+            <End Role="MEDECIN" EntitySet="MEDECINs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RDV__ID_MEDECIN__6FB49575" Association="Self.FK__RDV__ID_MEDECIN__6FB49575">
+            <End Role="MEDECIN" EntitySet="MEDECINs" />
+            <End Role="RDV" EntitySet="RDVs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UTILISATE__ID_ME__72910220" Association="Self.FK__UTILISATE__ID_ME__72910220">
+            <End Role="MEDECIN" EntitySet="MEDECINs" />
+            <End Role="UTILISATEUR" EntitySet="UTILISATEURs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRESCRIRE__ID_ME__4E53A1AA" Association="Self.FK__PRESCRIRE__ID_ME__4E53A1AA">
+            <End Role="MEDICAMENT" EntitySet="MEDICAMENTs" />
+            <End Role="PRESCRIRE" EntitySet="PRESCRIREs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOSPITALI__ID_PA__2DE6D218" Association="Self.FK__HOSPITALI__ID_PA__2DE6D218">
+            <End Role="PATIENT" EntitySet="PATIENTs" />
+            <End Role="HOSPITALISATION" EntitySet="HOSPITALISATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RDV__ID_PATIENT__70A8B9AE" Association="Self.FK__RDV__ID_PATIENT__70A8B9AE">
+            <End Role="PATIENT" EntitySet="PATIENTs" />
+            <End Role="RDV" EntitySet="RDVs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__STOCK__ID_PRODUI__14E61A24" Association="Self.FK__STOCK__ID_PRODUI__14E61A24">
+            <End Role="PRODUIT" EntitySet="PRODUITs" />
+            <End Role="STOCK" EntitySet="STOCKs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOSPITALI__ID_SE__2EDAF651" Association="Self.FK__HOSPITALI__ID_SE__2EDAF651">
+            <End Role="SERVICEE" EntitySet="SERVICEEs" />
+            <End Role="HOSPITALISATION" EntitySet="HOSPITALISATIONs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cliniqueModelStoreContainer" CdmEntityContainer="cliniqueEntities">
+          <EntitySetMapping Name="ACHATs">
+            <EntityTypeMapping TypeName="cliniqueModel.ACHAT">
+              <MappingFragment StoreEntitySet="ACHAT">
+                <ScalarProperty Name="ID_ACHAT" ColumnName="ID_ACHAT" />
+                <ScalarProperty Name="QUANTITE_ACHAT" ColumnName="QUANTITE_ACHAT" />
+                <ScalarProperty Name="TOTAL_ACHAT" ColumnName="TOTAL_ACHAT" />
+                <ScalarProperty Name="ID_FOURNISSEUR" ColumnName="ID_FOURNISSEUR" />
+                <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+                <ScalarProperty Name="ID_LIVRAISON" ColumnName="ID_LIVRAISON" />
+                <ScalarProperty Name="ID_CAISSE" ColumnName="ID_CAISSE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ANTECEDANTs">
+            <EntityTypeMapping TypeName="cliniqueModel.ANTECEDANT">
+              <MappingFragment StoreEntitySet="ANTECEDANT">
+                <ScalarProperty Name="ID_ANTECEDANT" ColumnName="ID_ANTECEDANT" />
+                <ScalarProperty Name="TYPE_ANTECEDANT" ColumnName="TYPE_ANTECEDANT" />
+                <ScalarProperty Name="DESCRIP_ANTECEDANT" ColumnName="DESCRIP_ANTECEDANT" />
+                <ScalarProperty Name="TRAITEMNT_HABITUEL_OCCASIONEL" ColumnName="TRAITEMNT_HABITUEL_OCCASIONEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AUTORISATIONs">
+            <EntityTypeMapping TypeName="cliniqueModel.AUTORISATION">
+              <MappingFragment StoreEntitySet="AUTORISATION">
+                <ScalarProperty Name="ID_AUTORISATION" ColumnName="ID_AUTORISATION" />
+                <ScalarProperty Name="JUSTIFICATION_AUTORISATION" ColumnName="JUSTIFICATION_AUTORISATION" />
+                <ScalarProperty Name="OBSERVATION_AUTORISATION" ColumnName="OBSERVATION_AUTORISATION" />
+                <ScalarProperty Name="ID_CONSULTATION" ColumnName="ID_CONSULTATION" />
+                <ScalarProperty Name="ID_SERVICE" ColumnName="ID_SERVICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAISSEs">
+            <EntityTypeMapping TypeName="cliniqueModel.CAISSE">
+              <MappingFragment StoreEntitySet="CAISSE">
+                <ScalarProperty Name="ID_CAISSE" ColumnName="ID_CAISSE" />
+                <ScalarProperty Name="DATE_CAISSE" ColumnName="DATE_CAISSE" />
+                <ScalarProperty Name="SOMME_PAYE" ColumnName="SOMME_PAYE" />
+                <ScalarProperty Name="ID_PAIEMENT" ColumnName="ID_PAIEMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAPTURATION_IMAGE">
+            <EntityTypeMapping TypeName="cliniqueModel.CAPTURATION_IMAGE">
+              <MappingFragment StoreEntitySet="CAPTURATION_IMAGE">
+                <ScalarProperty Name="ID_CAPTURATION_IMAGE" ColumnName="ID_CAPTURATION_IMAGE" />
+                <ScalarProperty Name="NOM_CAPTURE" ColumnName="NOM_CAPTURE" />
+                <ScalarProperty Name="IMAGEE" ColumnName="IMAGEE" />
+                <ScalarProperty Name="DATE_CAPTURE" ColumnName="DATE_CAPTURE" />
+                <ScalarProperty Name="OBSERVATION_IMAGE" ColumnName="OBSERVATION_IMAGE" />
+                <ScalarProperty Name="ID_CONSULTATION" ColumnName="ID_CONSULTATION" />
+                <ScalarProperty Name="ID_EQUIPEMENT" ColumnName="ID_EQUIPEMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHAMBREs">
+            <EntityTypeMapping TypeName="cliniqueModel.CHAMBRE">
+              <MappingFragment StoreEntitySet="CHAMBRE">
+                <ScalarProperty Name="ID_CHAMBRE" ColumnName="ID_CHAMBRE" />
+                <ScalarProperty Name="NBR_LIT" ColumnName="NBR_LIT" />
+                <ScalarProperty Name="ID_SERVICE" ColumnName="ID_SERVICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLINIQUEs">
+            <EntityTypeMapping TypeName="cliniqueModel.CLINIQUE">
+              <MappingFragment StoreEntitySet="CLINIQUE">
+                <ScalarProperty Name="ID_CLINIQUE" ColumnName="ID_CLINIQUE" />
+                <ScalarProperty Name="NOM_CLINIQUE" ColumnName="NOM_CLINIQUE" />
+                <ScalarProperty Name="POPRIETAIRE" ColumnName="POPRIETAIRE" />
+                <ScalarProperty Name="SPECIALITE" ColumnName="SPECIALITE" />
+                <ScalarProperty Name="REGISTRE_COM" ColumnName="REGISTRE_COM" />
+                <ScalarProperty Name="TEL1_CLINIQUE" ColumnName="TEL1_CLINIQUE" />
+                <ScalarProperty Name="TEL2_CLINIQUE" ColumnName="TEL2_CLINIQUE" />
+                <ScalarProperty Name="ADRESSE_CLINIQUE" ColumnName="ADRESSE_CLINIQUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONSOMATIONs">
+            <EntityTypeMapping TypeName="cliniqueModel.CONSOMATION">
+              <MappingFragment StoreEntitySet="CONSOMATION">
+                <ScalarProperty Name="ID_CONSOMATION" ColumnName="ID_CONSOMATION" />
+                <ScalarProperty Name="PRODUIT_CONSOME" ColumnName="PRODUIT_CONSOME" />
+                <ScalarProperty Name="QUANTITE_CONSOME" ColumnName="QUANTITE_CONSOME" />
+                <ScalarProperty Name="DAT_CONSOMATION" ColumnName="DAT_CONSOMATION" />
+                <ScalarProperty Name="ID_STOCK" ColumnName="ID_STOCK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONSULTATIONs">
+            <EntityTypeMapping TypeName="cliniqueModel.CONSULTATION">
+              <MappingFragment StoreEntitySet="CONSULTATION">
+                <ScalarProperty Name="ID_CONSULTATION" ColumnName="ID_CONSULTATION" />
+                <ScalarProperty Name="DATE_CONS" ColumnName="DATE_CONS" />
+                <ScalarProperty Name="PRIX_CONS" ColumnName="PRIX_CONS" />
+                <ScalarProperty Name="TOTAL_CONS" ColumnName="TOTAL_CONS" />
+                <ScalarProperty Name="ID_PATIENT" ColumnName="ID_PATIENT" />
+                <ScalarProperty Name="ID_MEDECIN" ColumnName="ID_MEDECIN" />
+                <ScalarProperty Name="ID_CLINIQUE" ColumnName="ID_CLINIQUE" />
+                <ScalarProperty Name="ID_EXAMEN" ColumnName="ID_EXAMEN" />
+                <ScalarProperty Name="ID_PAIEMENT" ColumnName="ID_PAIEMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTEMENTs">
+            <EntityTypeMapping TypeName="cliniqueModel.DEPARTEMENT">
+              <MappingFragment StoreEntitySet="DEPARTEMENT">
+                <ScalarProperty Name="ID_DEPARTEMENT" ColumnName="ID_DEPARTEMENT" />
+                <ScalarProperty Name="NOM_DEPARTEMENT" ColumnName="NOM_DEPARTEMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPENSE_CLINIQUE">
+            <EntityTypeMapping TypeName="cliniqueModel.DEPENSE_CLINIQUE">
+              <MappingFragment StoreEntitySet="DEPENSE_CLINIQUE">
+                <ScalarProperty Name="ID_DEPENSE" ColumnName="ID_DEPENSE" />
+                <ScalarProperty Name="MONTANT_RETIRE" ColumnName="MONTANT_RETIRE" />
+                <ScalarProperty Name="JUSTIFICATION" ColumnName="JUSTIFICATION" />
+                <ScalarProperty Name="DATE_DEPENSE" ColumnName="DATE_DEPENSE" />
+                <ScalarProperty Name="ID_CAISSE" ColumnName="ID_CAISSE" />
+                <ScalarProperty Name="ID_MEDECIN" ColumnName="ID_MEDECIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEs">
+            <EntityTypeMapping TypeName="cliniqueModel.EMPLOYE">
+              <MappingFragment StoreEntitySet="EMPLOYE">
+                <ScalarProperty Name="ID_EMPLOYE" ColumnName="ID_EMPLOYE" />
+                <ScalarProperty Name="NOM_EMPLOYE" ColumnName="NOM_EMPLOYE" />
+                <ScalarProperty Name="PRENOM_EMPLOYE" ColumnName="PRENOM_EMPLOYE" />
+                <ScalarProperty Name="DATEN_E" ColumnName="DATEN_E" />
+                <ScalarProperty Name="SEXE_EMPLOYE" ColumnName="SEXE_EMPLOYE" />
+                <ScalarProperty Name="TEL1_EMPLOYE" ColumnName="TEL1_EMPLOYE" />
+                <ScalarProperty Name="TEL2_EMPLOYE" ColumnName="TEL2_EMPLOYE" />
+                <ScalarProperty Name="EMAIL_EMPLOYE" ColumnName="EMAIL_EMPLOYE" />
+                <ScalarProperty Name="SITUATION_FAMILIALE_E" ColumnName="SITUATION_FAMILIALE_E" />
+                <ScalarProperty Name="GROUPAGE_E" ColumnName="GROUPAGE_E" />
+                <ScalarProperty Name="NIVEAU_ETUDE" ColumnName="NIVEAU_ETUDE" />
+                <ScalarProperty Name="ADRESSE_EMPLOYE" ColumnName="ADRESSE_EMPLOYE" />
+                <ScalarProperty Name="SALAIRE_E" ColumnName="SALAIRE_E" />
+                <ScalarProperty Name="NUM_CCP_E" ColumnName="NUM_CCP_E" />
+                <ScalarProperty Name="NUM_ASSUR_E" ColumnName="NUM_ASSUR_E" />
+                <ScalarProperty Name="STATUT" ColumnName="STATUT" />
+                <ScalarProperty Name="ROTATION" ColumnName="ROTATION" />
+                <ScalarProperty Name="ID_SERVICE" ColumnName="ID_SERVICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EQUIPEMENTs">
+            <EntityTypeMapping TypeName="cliniqueModel.EQUIPEMENT">
+              <MappingFragment StoreEntitySet="EQUIPEMENT">
+                <ScalarProperty Name="ID_EQUIPEMENT" ColumnName="ID_EQUIPEMENT" />
+                <ScalarProperty Name="NOM_EQUIPEMENT" ColumnName="NOM_EQUIPEMENT" />
+                <ScalarProperty Name="MARQUE_EQUIPEMENT" ColumnName="MARQUE_EQUIPEMENT" />
+                <ScalarProperty Name="ID_SERVICE" ColumnName="ID_SERVICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXAMEN">
+            <EntityTypeMapping TypeName="cliniqueModel.EXAMan">
+              <MappingFragment StoreEntitySet="EXAMEN">
+                <ScalarProperty Name="ID_EXAMEN" ColumnName="ID_EXAMEN" />
+                <ScalarProperty Name="NOM_EXAM" ColumnName="NOM_EXAM" />
+                <ScalarProperty Name="OBSERVATION_EXAM" ColumnName="OBSERVATION_EXAM" />
+                <ScalarProperty Name="PRIX_EXAM" ColumnName="PRIX_EXAM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTUREs">
+            <EntityTypeMapping TypeName="cliniqueModel.FACTURE">
+              <MappingFragment StoreEntitySet="FACTURE">
+                <ScalarProperty Name="ID_FACTURE" ColumnName="ID_FACTURE" />
+                <ScalarProperty Name="DATE_OPERATION" ColumnName="DATE_OPERATION" />
+                <ScalarProperty Name="INTITULE" ColumnName="INTITULE" />
+                <ScalarProperty Name="VERSEMENT" ColumnName="VERSEMENT" />
+                <ScalarProperty Name="RESTE" ColumnName="RESTE" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="ANCIEN_CREDIT" ColumnName="ANCIEN_CREDIT" />
+                <ScalarProperty Name="VALIDE_FACTURE" ColumnName="VALIDE_FACTURE" />
+                <ScalarProperty Name="ID_FOURNISSEUR" ColumnName="ID_FOURNISSEUR" />
+                <ScalarProperty Name="ID_EMPLOYE" ColumnName="ID_EMPLOYE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FOURNISSEURs">
+            <EntityTypeMapping TypeName="cliniqueModel.FOURNISSEUR">
+              <MappingFragment StoreEntitySet="FOURNISSEUR">
+                <ScalarProperty Name="ID_FOURNISSEUR" ColumnName="ID_FOURNISSEUR" />
+                <ScalarProperty Name="NOM_FOURNISSEUR" ColumnName="NOM_FOURNISSEUR" />
+                <ScalarProperty Name="TEL1_FOURNISSEUR" ColumnName="TEL1_FOURNISSEUR" />
+                <ScalarProperty Name="TEL2_FOURNISSEUR" ColumnName="TEL2_FOURNISSEUR" />
+                <ScalarProperty Name="ADRESSE_FOURNISSEUR" ColumnName="ADRESSE_FOURNISSEUR" />
+                <ScalarProperty Name="EMAIL_FOURNISSEUR" ColumnName="EMAIL_FOURNISSEUR" />
+                <ScalarProperty Name="PROFFESSION_FOURNISSEUR" ColumnName="PROFFESSION_FOURNISSEUR" />
+                <ScalarProperty Name="CREDIT_FOURNISSEUR" ColumnName="CREDIT_FOURNISSEUR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIVRAISONs">
+            <EntityTypeMapping TypeName="cliniqueModel.LIVRAISON">
+              <MappingFragment StoreEntitySet="LIVRAISON">
+                <ScalarProperty Name="ID_LIVRAISON" ColumnName="ID_LIVRAISON" />
+                <ScalarProperty Name="DATE_LIVRAISON" ColumnName="DATE_LIVRAISON" />
+                <ScalarProperty Name="PRIX_LIVRAISON" ColumnName="PRIX_LIVRAISON" />
+                <ScalarProperty Name="ID_FOURNISSEUR" ColumnName="ID_FOURNISSEUR" />
+                <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MALADIEs">
+            <EntityTypeMapping TypeName="cliniqueModel.MALADIE">
+              <MappingFragment StoreEntitySet="MALADIE">
+                <ScalarProperty Name="ID_MALADIE" ColumnName="ID_MALADIE" />
+                <ScalarProperty Name="FAMILLE_MALADIE" ColumnName="FAMILLE_MALADIE" />
+                <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDECINs">
+            <EntityTypeMapping TypeName="cliniqueModel.MEDECIN">
+              <MappingFragment StoreEntitySet="MEDECIN">
+                <ScalarProperty Name="ID_MEDECIN" ColumnName="ID_MEDECIN" />
+                <ScalarProperty Name="NOM_MEDECIN" ColumnName="NOM_MEDECIN" />
+                <ScalarProperty Name="PRENOM_MEDECIN" ColumnName="PRENOM_MEDECIN" />
+                <ScalarProperty Name="DATEN_M" ColumnName="DATEN_M" />
+                <ScalarProperty Name="SEXE_MEDECIN" ColumnName="SEXE_MEDECIN" />
+                <ScalarProperty Name="TEL1_MEDECIN" ColumnName="TEL1_MEDECIN" />
+                <ScalarProperty Name="TEL2_MEDECIN" ColumnName="TEL2_MEDECIN" />
+                <ScalarProperty Name="EMAIL_MEDECIN" ColumnName="EMAIL_MEDECIN" />
+                <ScalarProperty Name="SITUATION_FAMILIALE_M" ColumnName="SITUATION_FAMILIALE_M" />
+                <ScalarProperty Name="GROUPAGE_M" ColumnName="GROUPAGE_M" />
+                <ScalarProperty Name="SPECIALITE" ColumnName="SPECIALITE" />
+                <ScalarProperty Name="ADRESSE_MEDECIN" ColumnName="ADRESSE_MEDECIN" />
+                <ScalarProperty Name="SALAIRE_M" ColumnName="SALAIRE_M" />
+                <ScalarProperty Name="NUM_CCP_M" ColumnName="NUM_CCP_M" />
+                <ScalarProperty Name="NUM_ASSUR_M" ColumnName="NUM_ASSUR_M" />
+                <ScalarProperty Name="ID_SERVICE" ColumnName="ID_SERVICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDICAMENTs">
+            <EntityTypeMapping TypeName="cliniqueModel.MEDICAMENT">
+              <MappingFragment StoreEntitySet="MEDICAMENT">
+                <ScalarProperty Name="ID_MEDICAMENT" ColumnName="ID_MEDICAMENT" />
+                <ScalarProperty Name="DCI" ColumnName="DCI" />
+                <ScalarProperty Name="MARQUE_MEDICAMENT" ColumnName="MARQUE_MEDICAMENT" />
+                <ScalarProperty Name="DOSAGE" ColumnName="DOSAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAIEMENTs">
+            <EntityTypeMapping TypeName="cliniqueModel.PAIEMENT">
+              <MappingFragment StoreEntitySet="PAIEMENT">
+                <ScalarProperty Name="ID_PAIEMENT" ColumnName="ID_PAIEMENT" />
+                <ScalarProperty Name="MODE_PAIEMENT" ColumnName="MODE_PAIEMENT" />
+                <ScalarProperty Name="DATE_PAIEMENT" ColumnName="DATE_PAIEMENT" />
+                <ScalarProperty Name="VERSEMENT_PAIEMENT" ColumnName="VERSEMENT_PAIEMENT" />
+                <ScalarProperty Name="RESTE_PAIEMENT" ColumnName="RESTE_PAIEMENT" />
+                <ScalarProperty Name="TOTAL_PAIEMENT" ColumnName="TOTAL_PAIEMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PATIENTs">
+            <EntityTypeMapping TypeName="cliniqueModel.PATIENT">
+              <MappingFragment StoreEntitySet="PATIENT">
+                <ScalarProperty Name="ID_PATIENT" ColumnName="ID_PATIENT" />
+                <ScalarProperty Name="NOM_PATIENT" ColumnName="NOM_PATIENT" />
+                <ScalarProperty Name="PRENOM_PATIENT" ColumnName="PRENOM_PATIENT" />
+                <ScalarProperty Name="DATEN_P" ColumnName="DATEN_P" />
+                <ScalarProperty Name="SEXE_PATIENT" ColumnName="SEXE_PATIENT" />
+                <ScalarProperty Name="TEL1_PATIENT" ColumnName="TEL1_PATIENT" />
+                <ScalarProperty Name="TEL2_PATIENT" ColumnName="TEL2_PATIENT" />
+                <ScalarProperty Name="EMAIL_PATIENT" ColumnName="EMAIL_PATIENT" />
+                <ScalarProperty Name="SITUATION_FAMILIALE" ColumnName="SITUATION_FAMILIALE" />
+                <ScalarProperty Name="GROUPAGE" ColumnName="GROUPAGE" />
+                <ScalarProperty Name="PROFFESION" ColumnName="PROFFESION" />
+                <ScalarProperty Name="ADRESSE_PATIENT" ColumnName="ADRESSE_PATIENT" />
+                <ScalarProperty Name="NUM_ASSUR_P" ColumnName="NUM_ASSUR_P" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUITs">
+            <EntityTypeMapping TypeName="cliniqueModel.PRODUIT">
+              <MappingFragment StoreEntitySet="PRODUIT">
+                <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+                <ScalarProperty Name="NOM_PRODUIT" ColumnName="NOM_PRODUIT" />
+                <ScalarProperty Name="PRIX_PRODUIT" ColumnName="PRIX_PRODUIT" />
+                <ScalarProperty Name="DATE_EXP" ColumnName="DATE_EXP" />
+                <ScalarProperty Name="CODE_BAR" ColumnName="CODE_BAR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RDVs">
+            <EntityTypeMapping TypeName="cliniqueModel.RDV">
+              <MappingFragment StoreEntitySet="RDV">
+                <ScalarProperty Name="ID_RDV" ColumnName="ID_RDV" />
+                <ScalarProperty Name="DATE_RDV" ColumnName="DATE_RDV" />
+                <ScalarProperty Name="DATE_CREATION" ColumnName="DATE_CREATION" />
+                <ScalarProperty Name="RAISON" ColumnName="RAISON" />
+                <ScalarProperty Name="ID_MEDECIN" ColumnName="ID_MEDECIN" />
+                <ScalarProperty Name="ID_PATIENT" ColumnName="ID_PATIENT" />
+                <ScalarProperty Name="ID_EMPLOYE" ColumnName="ID_EMPLOYE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESULTAT_PATIENT">
+            <EntityTypeMapping TypeName="cliniqueModel.RESULTAT_PATIENT">
+              <MappingFragment StoreEntitySet="RESULTAT_PATIENT">
+                <ScalarProperty Name="ID_RESULTAT_PATIENT" ColumnName="ID_RESULTAT_PATIENT" />
+                <ScalarProperty Name="DATE_RESULTAT_PATIENT" ColumnName="DATE_RESULTAT_PATIENT" />
+                <ScalarProperty Name="COMPTE_RENDU_RESULTATP" ColumnName="COMPTE_RENDU_RESULTATP" />
+                <ScalarProperty Name="OBSERVATION_RESULTAT_PATIENT" ColumnName="OBSERVATION_RESULTAT_PATIENT" />
+                <ScalarProperty Name="ID_CONSULTATION" ColumnName="ID_CONSULTATION" />
+                <ScalarProperty Name="ID_EXAMEN" ColumnName="ID_EXAMEN" />
+                <ScalarProperty Name="ID_CAPTURATION_IMAGE" ColumnName="ID_CAPTURATION_IMAGE" />
+                <ScalarProperty Name="ID_CLINIQUE" ColumnName="ID_CLINIQUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICEEs">
+            <EntityTypeMapping TypeName="cliniqueModel.SERVICEE">
+              <MappingFragment StoreEntitySet="SERVICEE">
+                <ScalarProperty Name="ID_SERVICE" ColumnName="ID_SERVICE" />
+                <ScalarProperty Name="NOM_SERVICE" ColumnName="NOM_SERVICE" />
+                <ScalarProperty Name="ID_DEPARTEMENT" ColumnName="ID_DEPARTEMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STOCKs">
+            <EntityTypeMapping TypeName="cliniqueModel.STOCK">
+              <MappingFragment StoreEntitySet="STOCK">
+                <ScalarProperty Name="ID_STOCK" ColumnName="ID_STOCK" />
+                <ScalarProperty Name="DATE_STOCK" ColumnName="DATE_STOCK" />
+                <ScalarProperty Name="QUANTITE_ENTRE" ColumnName="QUANTITE_ENTRE" />
+                <ScalarProperty Name="QUANTITE_SORTIE" ColumnName="QUANTITE_SORTIE" />
+                <ScalarProperty Name="QUANTITE_REEL" ColumnName="QUANTITE_REEL" />
+                <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="cliniqueModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UTILISATEURs">
+            <EntityTypeMapping TypeName="cliniqueModel.UTILISATEUR">
+              <MappingFragment StoreEntitySet="UTILISATEUR">
+                <ScalarProperty Name="ID_UTILISATEUR" ColumnName="ID_UTILISATEUR" />
+                <ScalarProperty Name="NOM_UTILISATEUR" ColumnName="NOM_UTILISATEUR" />
+                <ScalarProperty Name="MTPS" ColumnName="MTPS" />
+                <ScalarProperty Name="ID_MEDECIN" ColumnName="ID_MEDECIN" />
+                <ScalarProperty Name="ID_EMPLOYE" ColumnName="ID_EMPLOYE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOSPITALISATIONs">
+            <EntityTypeMapping TypeName="cliniqueModel.HOSPITALISATION">
+              <MappingFragment StoreEntitySet="HOSPITALISATION">
+                <ScalarProperty Name="ID_PATIENT" ColumnName="ID_PATIENT" />
+                <ScalarProperty Name="ID_SERVICE" ColumnName="ID_SERVICE" />
+                <ScalarProperty Name="ID_CHAMBRE" ColumnName="ID_CHAMBRE" />
+                <ScalarProperty Name="lit" ColumnName="lit" />
+                <ScalarProperty Name="date_host" ColumnName="date_host" />
+                <ScalarProperty Name="ID_AUTORISATION" ColumnName="ID_AUTORISATION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRESCRIREs">
+            <EntityTypeMapping TypeName="cliniqueModel.PRESCRIRE">
+              <MappingFragment StoreEntitySet="PRESCRIRE">
+                <ScalarProperty Name="ID_CONSULTATION" ColumnName="ID_CONSULTATION" />
+                <ScalarProperty Name="ID_MEDICAMENT" ColumnName="ID_MEDICAMENT" />
+                <ScalarProperty Name="POSOLOGIE" ColumnName="POSOLOGIE" />
+                <ScalarProperty Name="DUREE_TRAITEMENT" ColumnName="DUREE_TRAITEMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

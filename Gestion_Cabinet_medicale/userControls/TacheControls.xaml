@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Gestion_Cabinet_medicale.TacheControls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gestion_Cabinet_medicale"
+             mc:Ignorable="d" 
+             Height="120"  Width="190" Name="control"  >
+    
+    <Grid  Background="Transparent">
+        <Border Name="border" Height="auto"  Width="auto"  Background="{Binding BackgroundControl ,FallbackValue=#0066aa,ElementName=control}" CornerRadius="7">
+            
+                <TextBlock Text="{Binding TextControl,ElementName=control, FallbackValue=Bonjour sirin}" Foreground="White"  FontSize="15" Margin="15" Width="150" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{DynamicResource comforta}" TextAlignment="Center" MaxWidth="90"/>
+
+            
+        </Border>
+       
+    </Grid>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="MouseEnter" >
+            <BeginStoryboard>
+                    <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.2" To="125" Storyboard.TargetProperty="Height" Storyboard.TargetName="control"/>
+                    <DoubleAnimation Duration="0:0:0.2" To="195" Storyboard.TargetProperty="Width" Storyboard.TargetName="control"/>
+                </Storyboard>
+            </BeginStoryboard>
+        
+        </EventTrigger>
+        <EventTrigger RoutedEvent="MouseLeave" >
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.2" To="120" Storyboard.TargetProperty="Height" Storyboard.TargetName="control"/>
+                    <DoubleAnimation Duration="0:0:0.2" To="190" Storyboard.TargetProperty="Width" Storyboard.TargetName="control"/>
+                </Storyboard>
+            </BeginStoryboard>
+
+        </EventTrigger>
+    </UserControl.Triggers>
+</UserControl>

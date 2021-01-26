@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Gestion_Cabinet_medicale">
+
+    <FontFamily x:Key="comforta">
+        /Resources/Fonts/#Comfortaa Light
+    </FontFamily>
+    <FontFamily x:Key="comfortaBold">
+        /Resources/Fonts/#Comfortaa 
+    </FontFamily>
+    
+
+</ResourceDictionary>

@@ -1,0 +1,79 @@
+﻿<Page x:Class="Gestion_Cabinet_medicale.PrincipalPatientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Gestion_Cabinet_medicale"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PrincipalPatientPage">
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition/>
+            
+        </Grid.RowDefinitions>
+        
+        
+
+            <Border CornerRadius="2
+                    " Margin="3" Background="{StaticResource TurqoiFoncé}"  >
+                <Grid   Background="Transparent" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200*" />
+                        <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="200*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button   Background="{Binding ActivePage_Patient , Converter={StaticResource pageToBackground  } , ConverterParameter=ListPatient}" Content="Patients" Style="{StaticResource TabButtonStyle}" Command="{Binding NavigateInPatient}">
+                        <Button.CommandParameter>
+                            <local:PatientAvailablePage>
+                                ListPatient
+                            </local:PatientAvailablePage>
+                        </Button.CommandParameter>
+                    </Button>
+
+
+                    <!-- <Border Height="3" Background="{Binding ActivePage_Patient , Converter={StaticResource pageToBackground  } , ConverterParameter=ListPatient}" Opacity="0.8" CornerRadius="2" Width="200" />-->
+
+
+                    <Button   Grid.Column="1" Background="{Binding ActivePage_Patient , Converter={StaticResource pageToBackground  } , ConverterParameter=Nouveau}" Content="Nouveau Patient" Style="{StaticResource TabButtonStyle}" Command="{Binding NavigateInPatient}">
+                        <Button.CommandParameter>
+                            <local:PatientAvailablePage>
+                                Nouveau
+                            </local:PatientAvailablePage>
+                        </Button.CommandParameter>
+                    </Button>
+
+
+                    <!--"<Border Height="3" Background="{Binding ActivePage_Patient , Converter={StaticResource pageToBackground  } , ConverterParameter=Nouveau}" Opacity="0.8" CornerRadius="2" Width="200" />-->
+
+
+                    <Button   Grid.Column="2" Background="{Binding ActivePage_Patient , Converter={StaticResource pageToBackground  } , ConverterParameter=DossierPatient}" Content="Dossier" Style="{StaticResource TabButtonStyle}" Command="{Binding NavigateInPatient}">
+                        <Button.CommandParameter>
+                            <local:PatientAvailablePage>
+                                DossierPatient
+                            </local:PatientAvailablePage>
+                        </Button.CommandParameter>
+                </Button>
+                <Button   Grid.Column="3" Background="{Binding ActivePage_Patient , Converter={StaticResource pageToBackground  } , ConverterParameter=DossierPatient}" Content="Dossier" Style="{StaticResource TabButtonStyle}" Command="{Binding NavigateInPatient}">
+                    <Button.CommandParameter>
+                        <local:PatientAvailablePage>
+                            DossierPatient
+                        </local:PatientAvailablePage>
+                    </Button.CommandParameter>
+                </Button>
+            </Grid>
+            </Border>
+                
+
+          
+
+       
+
+        <Grid Grid.Row="1">
+            <Frame x:Name="PatientFrame"/>
+        </Grid>
+    </Grid>
+</Page>

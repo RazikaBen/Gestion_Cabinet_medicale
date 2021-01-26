@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Gestion_Cabinet_medicale">
+    <local:WidthHeightToRectMultiConverter x:Key="rectConverter"/>
+    <local:DarkingBrushConverter x:Key="darkingConverter"/>
+    <local:IsTextToBooleanValueConverter x:Key="IsTextToBooleanValueConverter"/>
+    <local:boolToVisibiltyCoverter x:Key="myC"/>
+    <local:availablePagesToBackground x:Key="pageToBackground" />
+    <local:IsTextToOpacity x:Key="isTextToOpacityConverter"/>
+    <local:BootToOpacityConverter x:Key="BoolToOpacity"/>
+    <local:ReverseBool x:Key="reverseBool"/>
+
+</ResourceDictionary>

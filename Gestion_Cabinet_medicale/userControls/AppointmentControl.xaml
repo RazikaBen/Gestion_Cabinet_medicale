@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Gestion_Cabinet_medicale.AppointmentControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gestion_Cabinet_medicale"
+             mc:Ignorable="d" 
+             Height="50" Width="auto" Background="White" Name="control">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="60*"/>
+           
+            <ColumnDefinition Width="200*"/>
+            
+        </Grid.ColumnDefinitions>
+        <TextBlock Margin="10"  Text="{Binding completeName , ElementName=control }" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"  TextWrapping="Wrap" MaxWidth="90" FontFamily="{StaticResource comforta}"/>
+        <TextBlock Margin="10"  Text="{Binding dateRendezvous , ElementName=control }" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"  TextWrapping="Wrap" MaxWidth="50" FontFamily="{StaticResource comforta}"/>
+
+       
+        <TextBlock Margin="10"  Text="{Binding type , ElementName=control }" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"  TextWrapping="Wrap" MaxWidth="50" FontFamily="{StaticResource comforta}"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="4">
+            <Button Content="Annuler" Height="28" Width="70" local:AttachedProperty.IconData="{StaticResource Exit}" Foreground="{StaticResource RoseColor}"  Background="{StaticResource RoseTransparent}" Margin="5" Style="{StaticResource AppointmentButton}"/>
+            <Button Content="Accept" Height="28" Width="70" local:AttachedProperty.IconData="{StaticResource CheckGeometry}" Foreground="{StaticResource Green}"  Background="{StaticResource GreenTransparent}" Margin="5" Style="{StaticResource AppointmentButton}"/>
+            <Button Content="Apperçu" Height="28" Width="70" local:AttachedProperty.IconData="{StaticResource EyeGeometry}" Foreground="{StaticResource TurqoiFoncé}"  Background="{StaticResource TurqoiFoncéTransparent}" Margin="5" Style="{StaticResource AppointmentButton}"/>
+
+
+
+        </StackPanel>
+    </Grid>
+</UserControl>
